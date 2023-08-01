@@ -2,9 +2,12 @@
 
 const {
   db,
-  models: { User },
+  models: { User, Tag, Text },
 } = require("../server/db");
 
+const userData = require("./userData");
+const textData = require("./textData");
+const tagData = require("./tagData");
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -13,20 +16,19 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  // Creating Users
-  const users = await Promise.all([
-    User.create({ email: "cody@mail.com", password: "123" }),
-    User.create({ email: "murphy@mail.com", password: "123" }),
-  ]);
+  await Tag.bulkCreate(tagData);
+  await User.bulkCreate(userData);
+  // await Text.bulkCreate(textData, { include: [Tag] });
+  for (const data of textData) {
+    const { content, Tags } = data;
 
-  console.log(`seeded ${users.length} users`);
+    const text = await Text.create({ content: content });
+    const tags = await Tag.findAll({ where: { name: Tags } });
+
+    await text.setTags(tags);
+  }
+
   console.log(`seeded successfully`);
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1],
-    },
-  };
 }
 
 /*
