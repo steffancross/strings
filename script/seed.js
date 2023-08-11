@@ -18,7 +18,7 @@ async function seed() {
 
   await Tag.bulkCreate(tagData);
   await User.bulkCreate(userData);
-  // await Text.bulkCreate(textData, { include: [Tag] });
+
   for (const data of textData) {
     const { content, Tags } = data;
 
