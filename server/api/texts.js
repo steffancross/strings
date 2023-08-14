@@ -84,12 +84,14 @@ router.post("/", async (req, res, next) => {
       description,
     });
 
-    for (const tag of tags) {
-      const [newTag, created] = await Tag.findOrCreate({
-        where: { name: tag },
-      });
+    if (tags && tags.length > 0) {
+      for (const tag of tags) {
+        const [newTag, created] = await Tag.findOrCreate({
+          where: { name: tag },
+        });
 
-      await newText.addTags(newTag);
+        await newText.addTags(newTag);
+      }
     }
 
     res.send(newText);

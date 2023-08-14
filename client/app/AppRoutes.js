@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import AuthForm from "../features/auth/AuthForm";
 import Home from "../features/home/Home";
+import NewMat from "../features/newMat/Newmat";
 import { me } from "./store";
 
 const AppRoutes = () => {
@@ -17,8 +18,9 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
-          <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
+          <Route path="/new" element={<NewMat />} />
+          <Route path="/*" element={<Home />} />
         </Routes>
       ) : (
         <Routes>
