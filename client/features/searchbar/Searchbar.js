@@ -16,11 +16,11 @@ const SearchBar = () => {
   const handleSearch = () => {
     const [command, value] = searchInput.split(":").map((str) => str.trim());
 
-    if (command === "filter") {
+    if (command.toLowerCase() === "filter") {
       dispatch(fetchTextsByTag({ userId: userId, tagName: value }));
-    } else if (command === "search") {
+    } else if (command.toLowerCase() === "search") {
       dispatch(fetchTextsByContent({ userId: userId, searchTerm: value }));
-    } else if (command === "home") {
+    } else if (command.toLowerCase() === "home") {
       dispatch(fetchTexts({ userId }));
     }
   };
