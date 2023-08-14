@@ -28,7 +28,7 @@ router.get("/", async (req, res, next) => {
 // finds texts by tag
 router.get("/byTag", async (req, res, next) => {
   try {
-    const { userId, tagNames } = req.query;
+    const { userId, tagName } = req.query;
     const texts = await Text.findAll({
       where: {
         userId: userId,
@@ -36,7 +36,7 @@ router.get("/byTag", async (req, res, next) => {
       attributes: ["content", "id"],
       include: {
         model: Tag,
-        where: { name: tagNames },
+        where: { name: tagName },
         attributes: ["id", "name"],
         through: { attributes: [] },
       },
@@ -47,6 +47,7 @@ router.get("/byTag", async (req, res, next) => {
   }
 });
 
+// finds text by search term
 router.get("/byContent", async (req, res, next) => {
   try {
     const { userId, searchTerm } = req.query;
