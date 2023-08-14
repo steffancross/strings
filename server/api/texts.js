@@ -70,3 +70,30 @@ router.get("/byContent", async (req, res, next) => {
     next(err);
   }
 });
+
+// create new text
+router.post("/", async (req, res, next) => {
+  try {
+    const { content, userId, source, link, description, tags } = req.body;
+
+    const newText = await Text.create({
+      content,
+      userId,
+      source,
+      link,
+      description,
+    });
+
+    for (const tag of tags) {
+      const [newTag, created] = await Tag.findOrCreate({
+        where: { name: tag },
+      });
+
+      await newText.addTags(newTag);
+    }
+
+    res.send(newText);
+  } catch (err) {
+    next(err);
+  }
+});

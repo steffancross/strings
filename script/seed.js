@@ -20,12 +20,12 @@ async function seed() {
   await User.bulkCreate(userData);
 
   for (const data of textData) {
-    const { Tags } = data;
+    const { tags } = data;
 
     const text = await Text.create(data);
-    const tags = await Tag.findAll({ where: { name: Tags } });
+    const newTag = await Tag.findAll({ where: { name: tags } });
 
-    await text.setTags(tags);
+    await text.setTags(newTag);
   }
 
   console.log(`seeded successfully`);
