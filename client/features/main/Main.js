@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchTexts } from "./mainSlice";
 
 const Main = () => {
@@ -22,10 +23,12 @@ const Main = () => {
         <div id="text-container">
           {texts.map((text, index) => (
             <div id="text" key={index}>
-              <h3>{text.content}</h3>
-              {text.tags.map((tag, index) => (
-                <p key={index}>{tag.name}</p>
-              ))}
+              <Link to={`/mat/${text.id}`}>
+                <h3>{text.content}</h3>
+                {text.tags.map((tag, index) => (
+                  <p key={index}>{tag.name}</p>
+                ))}
+              </Link>
             </div>
           ))}
         </div>

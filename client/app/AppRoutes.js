@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import AuthForm from "../features/auth/AuthForm";
 import Home from "../features/home/Home";
+import SingleMat from "../features/singlemat/Singlemat";
 import { me } from "./store";
 
 const AppRoutes = () => {
@@ -18,6 +19,7 @@ const AppRoutes = () => {
       {isLoggedIn ? (
         <Routes>
           <Route to="/home" element={<Home />} />
+          <Route to="/mat/:id" element={<SingleMat />} />
           <Route path="/*" element={<Home />} />
         </Routes>
       ) : (
