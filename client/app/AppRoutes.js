@@ -19,7 +19,7 @@ const AppRoutes = () => {
       {isLoggedIn ? (
         <Routes>
           <Route to="/home" element={<Home />} />
-          <Route to="/mat/:id" element={<SingleMat />} />
+          <Route path="/mat/:id" element={<SingleMat />} />
           <Route path="/*" element={<Home />} />
         </Routes>
       ) : (

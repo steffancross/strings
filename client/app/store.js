@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import authReducer from "../features/auth/authSlice";
 import mainSlice from "../features/main/mainSlice";
+import singlematSlice from "../features/singlemat/singlematSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     texts: mainSlice,
+    mat: singlematSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
