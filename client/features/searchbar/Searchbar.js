@@ -5,6 +5,8 @@ import {
   fetchTextsByContent,
   fetchTextsByTag,
 } from "../main/mainSlice";
+import NewMat from "../newMat/Newmat";
+import Popup from "reactjs-popup";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -12,6 +14,7 @@ const SearchBar = () => {
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
   const inputRef = useRef(null);
+  const [showNewMat, setShowNewMat] = useState(false);
 
   const handleSearch = () => {
     const [command, value] = searchInput.split(":").map((str) => str.trim());
@@ -22,7 +25,11 @@ const SearchBar = () => {
       dispatch(fetchTextsByContent({ userId: userId, searchTerm: value }));
     } else if (command.toLowerCase() === "home") {
       dispatch(fetchTexts({ userId }));
+    } else if (command.toLowerCase() === "new") {
+      setShowNewMat(true);
     }
+
+    setSearchInput("");
   };
 
   const handleKeyDown = (event) => {
@@ -33,7 +40,7 @@ const SearchBar = () => {
 
   const handleGlobalKeyDown = (event) => {
     if (event.key === "/" && document.activeElement !== inputRef.current) {
-      event.preventDefault(); // Prevent the "/" from appearing in the input field
+      event.preventDefault();
       inputRef.current.focus();
     }
   };
@@ -46,16 +53,26 @@ const SearchBar = () => {
   }, []);
 
   return (
-    <div id="search-bar">
-      <input
-        ref={inputRef}
-        type="text"
-        placeholder="Enter search command..."
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-    </div>
+    <>
+      <div id="search-bar">
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Enter search command..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+      <Popup
+        className="add-popup"
+        open={showNewMat}
+        onClose={() => setShowNewMat(false)}
+        modal
+      >
+        <NewMat />
+      </Popup>
+    </>
   );
 };
 
