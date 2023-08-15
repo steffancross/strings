@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMat } from "./newmatSlice";
+import { fetchTexts } from "../main/mainSlice";
 
 const NewMat = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,12 @@ const NewMat = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
   };
 
   const handleSubmit = (e) => {
@@ -42,6 +49,7 @@ const NewMat = () => {
     };
 
     dispatch(addMat(payload));
+    dispatch(fetchTexts({ userId }));
 
     // clear the form after submit
     setFormData({
@@ -64,6 +72,7 @@ const NewMat = () => {
             name="content"
             value={formData.content}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </label>
         <label>
@@ -73,6 +82,7 @@ const NewMat = () => {
             name="source"
             value={formData.source}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </label>
         <label>
@@ -82,6 +92,7 @@ const NewMat = () => {
             name="link"
             value={formData.link}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </label>
         <label>
@@ -100,6 +111,7 @@ const NewMat = () => {
             name="tags"
             value={formData.tags}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </label>
         <button type="submit">Add Text</button>
