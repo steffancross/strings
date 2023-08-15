@@ -45,6 +45,10 @@ const SearchBar = () => {
     }
   };
 
+  const closeNewMatPopup = () => {
+    setShowNewMat(false);
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", handleGlobalKeyDown);
     return () => {
@@ -70,7 +74,7 @@ const SearchBar = () => {
         onClose={() => setShowNewMat(false)}
         modal
       >
-        <NewMat />
+        <NewMat closePopup={closeNewMatPopup} />
       </Popup>
     </>
   );

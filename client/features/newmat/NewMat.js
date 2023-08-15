@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMat } from "./newmatSlice";
 import { fetchTexts } from "../main/mainSlice";
 
-const NewMat = () => {
+const NewMat = ({ closePopup }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
@@ -29,7 +29,7 @@ const NewMat = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { content, source, link, description, tags } = formData;
@@ -48,7 +48,7 @@ const NewMat = () => {
       tags: tagsArray[0] !== "" ? tagsArray : [],
     };
 
-    dispatch(addMat(payload));
+    await dispatch(addMat(payload));
     dispatch(fetchTexts({ userId }));
 
     // clear the form after submit
@@ -60,6 +60,8 @@ const NewMat = () => {
       description: "",
       tags: "",
     });
+
+    closePopup();
   };
 
   return (
