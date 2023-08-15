@@ -9,6 +9,7 @@ const SingleMat = () => {
   const { id } = useParams();
 
   const mat = useSelector((state) => state.mat);
+  const tags = useSelector((state) => state.mat.tags);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
@@ -19,7 +20,22 @@ const SingleMat = () => {
 
   return (
     <>
-      <div>hello</div>
+      {mat && tags && (
+        <div>
+          <div>
+            <p>{mat.content}</p>
+          </div>
+          <div>
+            <p>Description: {mat.description}</p>
+            <p>Source: {mat.source}</p>
+            <p>Link: {mat.link}</p>
+            {tags.map((tag, index) => (
+              <p key={index}>{tag.name}</p>
+            ))}
+          </div>
+          <div>Edit Mat</div>
+        </div>
+      )}
     </>
   );
 };

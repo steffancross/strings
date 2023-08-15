@@ -32,7 +32,7 @@ router.get("/:id", async (req, res, next) => {
       where: {
         id: req.params.id,
       },
-      attributes: ["content", "id"],
+      attributes: ["content", "id", "source", "description", "link"],
       include: {
         model: Tag,
         attributes: ["id", "name"],
