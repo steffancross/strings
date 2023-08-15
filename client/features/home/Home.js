@@ -1,16 +1,13 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React from "react";
+import Main from "../main/Main";
+import SearchBar from "../searchbar/Searchbar";
 
-/**
- * COMPONENT
- */
-const Home = (props) => {
-  const username = useSelector((state) => state.auth.me.username);
-
+const Home = () => {
   return (
-    <div>
-      <h3>Welcome, {username}</h3>
-    </div>
+    <>
+      <SearchBar />
+      <Main />
+    </>
   );
 };
 
