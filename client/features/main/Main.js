@@ -25,9 +25,6 @@ const Main = () => {
             <div id="text" key={index}>
               <Link to={`/mat/${text.id}`}>
                 <h3>{text.content}</h3>
-                {text.tags.map((tag, index) => (
-                  <p key={index}>{tag.name}</p>
-                ))}
               </Link>
             </div>
           ))}
