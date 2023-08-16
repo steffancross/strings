@@ -9,7 +9,6 @@ const NewMat = ({ closePopup }) => {
   const userId = user.id;
   const [formData, setFormData] = useState({
     content: "",
-    source: "",
     link: "",
     description: "",
     tags: "",
@@ -32,17 +31,16 @@ const NewMat = ({ closePopup }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { content, source, link, description, tags } = formData;
+    const { content, link, description, tags } = formData;
 
     // spilt and trim tags
     const tagsArray = tags.split(",").map((tag) => tag.trim());
 
-    // what will be sending to addMat, don't include source, link, and
+    // what will be sending to addMat, don't include link, and
     // description if they are left blank
     const payload = {
       content,
       userId,
-      ...(source !== "" && { source }),
       ...(link !== "" && { link }),
       ...(description !== "" && { description }),
       tags: tagsArray[0] !== "" ? tagsArray : [],
@@ -55,7 +53,6 @@ const NewMat = ({ closePopup }) => {
     setFormData({
       content: "",
       userId: "",
-      source: "",
       link: "",
       description: "",
       tags: "",
@@ -73,16 +70,6 @@ const NewMat = ({ closePopup }) => {
           <textarea
             name="content"
             value={formData.content}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-          />
-        </label>
-        <label>
-          Source:
-          <input
-            type="text"
-            name="source"
-            value={formData.source}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           />

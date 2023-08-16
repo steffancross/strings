@@ -78,7 +78,7 @@ router.get("/:id", async (req, res, next) => {
       where: {
         id: req.params.id,
       },
-      attributes: ["content", "id", "source", "description", "link"],
+      attributes: ["content", "id", "description", "link"],
       include: {
         model: Tag,
         attributes: ["id", "name"],
@@ -94,12 +94,11 @@ router.get("/:id", async (req, res, next) => {
 // create new text
 router.post("/", async (req, res, next) => {
   try {
-    const { content, userId, source, link, description, tags } = req.body;
+    const { content, userId, link, description, tags } = req.body;
 
     const newText = await Text.create({
       content,
       userId,
-      source,
       link,
       description,
     });
@@ -133,7 +132,7 @@ router.delete("/:id", async (req, res, next) => {
 // edit a text
 router.put("/:id", async (req, res, next) => {
   try {
-    const { content, source, link, description, tags } = req.body;
+    const { content, link, description, tags } = req.body;
 
     const textToEdit = await Text.findByPk(req.params.id);
 
@@ -142,7 +141,6 @@ router.put("/:id", async (req, res, next) => {
     }
 
     textToEdit.content = content;
-    textToEdit.source = source;
     textToEdit.link = link;
     textToEdit.description = description;
 

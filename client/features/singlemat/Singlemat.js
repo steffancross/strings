@@ -34,7 +34,6 @@ const SingleMat = () => {
           </div>
           <div>
             <p>Description: {mat.description}</p>
-            <p>Source: {mat.source}</p>
             <p>Link: {mat.link}</p>
             {tags.map((tag, index) => (
               <p key={index}>{tag.name}</p>

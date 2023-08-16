@@ -6,10 +6,6 @@ const Text = db.define("text", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  source: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
   description: {
     type: Sequelize.STRING,
     allowNull: true,
