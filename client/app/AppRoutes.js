@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import AuthForm from "../features/auth/AuthForm";
-import Home from "../features/home/Home";
+import NotLoggedIn from "../features/notloggedin/NotLoggedIn";
+import Main from "../features/main/Main";
 import SingleMat from "../features/singlemat/Singlemat";
 import Guide from "../features/guide/Guide";
 import { me } from "./store";
@@ -19,10 +20,10 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
-          <Route to="/" element={<Home />} />
+          <Route to="/" element={<Main />} />
           <Route path="/mat/:id" element={<SingleMat />} />
           <Route path="/guide" element={<Guide />} />
-          <Route path="/*" element={<Home />} />
+          <Route path="/*" element={<Main />} />
         </Routes>
       ) : (
         <Routes>

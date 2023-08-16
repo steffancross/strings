@@ -6,6 +6,7 @@ import {
   fetchTextsByTag,
 } from "../main/mainSlice";
 import NewMat from "../newMat/Newmat";
+import Navbar from "../navbar/Navbar";
 import Popup from "reactjs-popup";
 
 const SearchBar = () => {
@@ -58,15 +59,19 @@ const SearchBar = () => {
 
   return (
     <>
-      <div id="search-bar">
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Enter search command..."
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
+      <div id="top-bar">
+        <div></div>
+        <div id="search-bar">
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Enter search command..."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+        </div>
+        <Navbar />
       </div>
       <Popup
         className="add-popup"

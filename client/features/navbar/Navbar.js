@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <Popup
       trigger={<div className="menu-item"> Menu </div>}
-      position="left center"
+      position="left top"
       on="hover"
       closeOnDocumentClick
       mouseLeaveDelay={300}
@@ -27,7 +27,7 @@ const Navbar = () => {
       <div>
         <nav>
           {isLoggedIn ? (
-            <div>
+            <div id="menu">
               <Link to="/">Home</Link>
               <Link to="/guide">Guide</Link>
               <button type="button" onClick={logoutAndRedirectHome}>
