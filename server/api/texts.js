@@ -71,7 +71,7 @@ router.get("/byContent", async (req, res, next) => {
   }
 });
 
-// single text
+// get single text
 router.get("/:id", async (req, res, next) => {
   try {
     const text = await Text.findOne({
@@ -113,7 +113,6 @@ router.post("/", async (req, res, next) => {
         await newText.addTags(newTag);
       }
     }
-
     res.send(newText);
   } catch (err) {
     next(err);
@@ -126,6 +125,43 @@ router.delete("/:id", async (req, res, next) => {
     const text = await Text.findByPk(req.params.id);
     await text.destroy();
     res.send(text);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// edit a text
+router.put("/:id", async (req, res, next) => {
+  try {
+    const { content, source, link, description, tags } = req.body;
+
+    const textToEdit = await Text.findByPk(req.params.id);
+
+    if (!textToEdit) {
+      return res.status(404).json({ error: "Text not found" });
+    }
+
+    textToEdit.content = content;
+    textToEdit.source = source;
+    textToEdit.link = link;
+    textToEdit.description = description;
+
+    await textToEdit.save();
+
+    // remove existing tags associated with the text
+    await textToEdit.setTags([]);
+
+    // Add new tags if provided
+    if (tags && tags.length > 0) {
+      for (const tag of tags) {
+        const [newTag, created] = await Tag.findOrCreate({
+          where: { name: tag },
+        });
+
+        await textToEdit.addTags(newTag);
+      }
+    }
+    res.send(textToEdit);
   } catch (err) {
     next(err);
   }
