@@ -10,16 +10,17 @@ label {
   display: block;
 }
 
-nav a {
+/* nav a {
   display: inline-block;
   margin: 1em;
-}
+} */
 
 form div {
   margin: 1em;
   display: inline-block;
 }
 
+/* NEWMAT */
 .add-popup-content {
   margin: auto;
   background: rgb(255, 255, 255);
@@ -33,4 +34,11 @@ form div {
 
 .add-popup-overlay {
   background: rgba(0, 0, 0, 0.5);
+}
+
+/* NAVBAR */
+.menu-item {
+  position: fixed;
+  right: 0;
+  top: 10;
 }

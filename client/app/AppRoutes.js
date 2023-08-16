@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import AuthForm from "../features/auth/AuthForm";
 import Home from "../features/home/Home";
 import SingleMat from "../features/singlemat/Singlemat";
+import Guide from "../features/guide/Guide";
 import { me } from "./store";
 
 const AppRoutes = () => {
@@ -18,8 +19,9 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
-          <Route to="/home" element={<Home />} />
+          <Route to="/" element={<Home />} />
           <Route path="/mat/:id" element={<SingleMat />} />
+          <Route path="/guide" element={<Guide />} />
           <Route path="/*" element={<Home />} />
         </Routes>
       ) : (

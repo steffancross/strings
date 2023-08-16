@@ -25,26 +25,6 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// single text
-router.get("/:id", async (req, res, next) => {
-  try {
-    const text = await Text.findOne({
-      where: {
-        id: req.params.id,
-      },
-      attributes: ["content", "id", "source", "description", "link"],
-      include: {
-        model: Tag,
-        attributes: ["id", "name"],
-        through: { attributes: [] },
-      },
-    });
-    res.send(text);
-  } catch (err) {
-    next(err);
-  }
-});
-
 // finds texts by tag
 router.get("/byTag", async (req, res, next) => {
   try {
@@ -86,6 +66,26 @@ router.get("/byContent", async (req, res, next) => {
       },
     });
     res.send(texts);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// single text
+router.get("/:id", async (req, res, next) => {
+  try {
+    const text = await Text.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["content", "id", "source", "description", "link"],
+      include: {
+        model: Tag,
+        attributes: ["id", "name"],
+        through: { attributes: [] },
+      },
+    });
+    res.send(text);
   } catch (err) {
     next(err);
   }
