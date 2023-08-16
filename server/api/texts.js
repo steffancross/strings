@@ -119,3 +119,14 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
+
+// delete text
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const text = await Text.findByPk(req.params.id);
+    await text.destroy();
+    res.send(text);
+  } catch (err) {
+    next(err);
+  }
+});
