@@ -16,18 +16,31 @@ const SearchBar = () => {
   const userId = user.id;
   const inputRef = useRef(null);
   const [showNewMat, setShowNewMat] = useState(false);
+  const [commandNotRecog, setCommandNotRecog] = useState(false);
 
   const handleSearch = () => {
-    const [command, value] = searchInput.split(":").map((str) => str.trim());
+    const [command, value] = searchInput
+      .split(":")
+      .map((str) => str.trim().toLowerCase());
 
-    if (command.toLowerCase() === "filter") {
-      dispatch(fetchTextsByTag({ userId: userId, tagName: value }));
-    } else if (command.toLowerCase() === "search") {
-      dispatch(fetchTextsByContent({ userId: userId, searchTerm: value }));
-    } else if (command.toLowerCase() === "home") {
-      dispatch(fetchTexts({ userId }));
-    } else if (command.toLowerCase() === "new") {
-      setShowNewMat(true);
+    switch (command) {
+      case "filter":
+        dispatch(fetchTextsByTag({ userId: userId, tagName: value }));
+        break;
+      case "search":
+        dispatch(fetchTextsByContent({ userId: userId, searchTerm: value }));
+        break;
+      case "home":
+        dispatch(fetchTexts({ userId }));
+        break;
+      case "new":
+        setShowNewMat(true);
+        break;
+      default:
+        setCommandNotRecog(true);
+        setTimeout(() => {
+          setCommandNotRecog(false);
+        }, 1200);
     }
 
     setSearchInput("");
@@ -73,6 +86,7 @@ const SearchBar = () => {
         </div>
         <Navbar />
       </div>
+      {commandNotRecog && <div id="cmd-not-rcg">Unknown Command</div>}
       <Popup
         className="add-popup"
         open={showNewMat}
