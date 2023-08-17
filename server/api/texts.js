@@ -81,7 +81,7 @@ router.get("/:id", async (req, res, next) => {
       attributes: ["content", "id", "description", "link"],
       include: {
         model: Tag,
-        attributes: ["id", "name"],
+        attributes: ["name"],
         through: { attributes: [] },
       },
     });

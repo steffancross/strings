@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchMat, deleteMat } from "./singlematSlice";
+import EditMat from "../editmat/EditMat";
 
 const SingleMat = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const SingleMat = () => {
           </div>
         </div>
       )}
+      <EditMat />
     </>
   );
 };

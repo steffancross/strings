@@ -2,12 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // create new
-export const addMat = createAsyncThunk(
-  "texts/post",
-  async ({ content, userId, link, description, tags }) => {
-    const { data } = await axios.post(`/api/texts`, {
+export const editMat = createAsyncThunk(
+  "texts/put",
+  async ({ content, link, description, tags, id }) => {
+    const { data } = await axios.put(`/api/texts/${id}`, {
       content,
-      userId,
       link,
       description,
       tags,

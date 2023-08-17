@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addMat } from "./newmatSlice";
-import { fetchTexts } from "../main/mainSlice";
+import { editMat } from "./editmatSlice";
 
-const NewMat = ({ closePopup }) => {
+const EditMat = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.me);
-  const userId = user.id;
+  const mat = useSelector((state) => state.mat);
   const [formData, setFormData] = useState({
     content: "",
     link: "",
@@ -28,7 +26,7 @@ const NewMat = ({ closePopup }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const { content, link, description, tags } = formData;
@@ -36,34 +34,41 @@ const NewMat = ({ closePopup }) => {
     // spilt and trim tags
     const tagsArray = tags.split(",").map((tag) => tag.trim());
 
-    // what will be sending to addMat, don't include link, and
+    // what will be sending to editMat, don't include link, and
     // description if they are left blank
     const payload = {
       content,
-      userId,
       ...(link !== "" && { link }),
       ...(description !== "" && { description }),
       tags: tagsArray[0] !== "" ? tagsArray : [],
+      id: mat.id,
     };
 
-    await dispatch(addMat(payload));
-    dispatch(fetchTexts({ userId }));
+    dispatch(editMat(payload));
 
     // clear the form after submit
     setFormData({
       content: "",
-      userId: "",
       link: "",
       description: "",
       tags: "",
     });
-
-    closePopup();
   };
+
+  useEffect(() => {
+    if (mat) {
+      setFormData({
+        content: mat.content || "",
+        link: mat.link || "",
+        description: mat.description || "",
+        tags: mat.tags ? mat.tags.map((tag) => tag.name).join(", ") : "",
+      });
+    }
+  }, [mat]);
 
   return (
     <div>
-      <h2>Add New Mat</h2>
+      <h2>Edit</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Content:
@@ -103,10 +108,10 @@ const NewMat = ({ closePopup }) => {
             onKeyDown={handleKeyDown}
           />
         </label>
-        <button type="submit">Add Text</button>
+        <button type="submit">Save</button>
       </form>
     </div>
   );
 };
 
-export default NewMat;
+export default EditMat;
