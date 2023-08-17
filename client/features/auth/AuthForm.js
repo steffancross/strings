@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticate } from "../../app/store";
+import { useNavigate } from "react-router-dom";
 
 /**
   The AuthForm component can be used for Login or Sign Up.
@@ -9,8 +10,9 @@ import { authenticate } from "../../app/store";
 **/
 
 const AuthForm = ({ name, displayName }) => {
-  const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { error } = useSelector((state) => state.auth);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -18,6 +20,7 @@ const AuthForm = ({ name, displayName }) => {
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     dispatch(authenticate({ email, password, method: formName }));
+    navigate("/");
   };
 
   return (

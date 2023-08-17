@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   fetchTexts,
   fetchTextsByContent,
@@ -11,6 +12,7 @@ import Popup from "reactjs-popup";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
@@ -30,11 +32,17 @@ const SearchBar = () => {
       case "search":
         dispatch(fetchTextsByContent({ userId: userId, searchTerm: value }));
         break;
-      case "home":
+      case "clear":
         dispatch(fetchTexts({ userId }));
         break;
       case "new":
         setShowNewMat(true);
+        break;
+      case "home":
+        navigate("/");
+        break;
+      case "guide":
+        navigate("/guide");
         break;
       default:
         setCommandNotRecog(true);
