@@ -13,13 +13,10 @@ const SingleMat = () => {
   const mat = useSelector((state) => state.mat);
   const tags = useSelector((state) => state.mat.tags);
 
-  const handleDelete = async () => {
-    try {
-      await dispatch(deleteMat(id));
+  const handleDelete = () => {
+    dispatch(deleteMat(id)).then(() => {
       navigate("/");
-    } catch (error) {
-      console.error("error deleting mat", error);
-    }
+    });
   };
 
   useEffect(() => {
