@@ -38,9 +38,12 @@ const Main = () => {
         </div>
       ) : (
         <div>
-          <p>Looks like you don't have any mats yet, click</p>
+          <p>
+            Looks like you don't have any mats yet, or any associated with that
+            search. Click
+          </p>
           <button onClick={() => setShowNewMat(true)}>here</button>
-          <p>to make your first one</p>
+          <p>to make your first one.</p>
         </div>
       )}
       <Popup
