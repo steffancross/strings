@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editMat } from "./editmatSlice";
+import { fetchMat } from "../singlemat/singlematSlice";
 
 const EditMat = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const EditMat = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { content, link, description, tags } = formData;
@@ -44,9 +45,9 @@ const EditMat = () => {
       id: mat.id,
     };
 
-    dispatch(editMat(payload));
+    await dispatch(editMat(payload));
+    dispatch(fetchMat(mat.id));
 
-    // clear the form after submit
     setFormData({
       content: "",
       link: "",
