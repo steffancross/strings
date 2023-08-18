@@ -1,24 +1,44 @@
+:root {
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --tertiary-color: gray;
+}
+
 body {
   font-family: sans-serif;
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
+  color: #000;
 }
 
 label {
   display: block;
 }
 
-/* nav a {
-  display: inline-block;
-  margin: 1em;
-} */
-
 form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* Generic center div */
+.centering-div {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+/* NOT LOGGED IN */
+.notloggedin {
+  display: flex;
+  align-items: center;
+}
+
+/* .notloggedin a {
+  margin-top: 0;
+  margin-bottom: 0;
+} */
 
 /* NEWMAT */
 .add-popup-content {
