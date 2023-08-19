@@ -80,9 +80,9 @@ const SearchBar = () => {
 
   return (
     <>
-      <div id="top-bar">
+      <div className="top-bar">
         <div></div>
-        <div id="search-bar">
+        <div className="search-bar">
           <input
             ref={inputRef}
             type="text"

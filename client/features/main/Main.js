@@ -27,11 +27,11 @@ const Main = () => {
   return (
     <>
       {texts.length > 0 ? (
-        <div id="text-container">
+        <div className="text-container">
           {texts.map((text, index) => (
-            <div id="text" key={index}>
-              <Link to={`/mat/${text.id}`}>
-                <h3>{text.content}</h3>
+            <div className="individual-text" key={index}>
+              <Link className="text-link" to={`/mat/${text.id}`}>
+                <p>{text.content}</p>
               </Link>
             </div>
           ))}
