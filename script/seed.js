@@ -16,8 +16,8 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  await Tag.bulkCreate(tagData);
   await User.bulkCreate(userData);
+  await Tag.bulkCreate(tagData);
 
   for (const data of textData) {
     const { tags } = data;

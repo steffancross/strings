@@ -9,6 +9,9 @@ const TextTag = require("./models/TextTag");
 User.hasMany(Text);
 Text.belongsTo(User);
 
+User.hasMany(Tag);
+Tag.belongsTo(User);
+
 Text.belongsToMany(Tag, { through: TextTag });
 Tag.belongsToMany(Text, { through: TextTag });
 
