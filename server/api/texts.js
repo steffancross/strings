@@ -106,7 +106,7 @@ router.post("/", async (req, res, next) => {
     if (tags && tags.length > 0) {
       for (const tag of tags) {
         const [newTag, created] = await Tag.findOrCreate({
-          where: { name: tag },
+          where: { name: tag, userId },
         });
 
         await newText.addTags(newTag);
