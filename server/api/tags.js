@@ -17,3 +17,58 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+
+// get single
+router.get("/:id", async (req, res, next) => {
+  try {
+    const tag = await Tag.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.send(tag);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// create new tag
+router.post("/", async (req, res, next) => {
+  try {
+    const { name, userId } = req.body;
+
+    const [newTag, created] = await Tag.findOrCreate({
+      where: { name, userId },
+    });
+
+    res.send(newTag);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// delete tag
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const tag = await Tag.findByPk(req.params.id);
+    await tag.destroy();
+    res.send(tag);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// edit a tag
+router.put("/:id", async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    const tagToEdit = await Tag.findByPk(req.params.id);
+
+    tagToEdit.name = name;
+
+    await tagToEdit.save();
+    res.send(tagToEdit);
+  } catch (err) {
+    next(err);
+  }
+});
