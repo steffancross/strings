@@ -41,6 +41,9 @@ const SearchBar = () => {
       case "home":
         navigate("/");
         break;
+      case "tags":
+        navigate("/tags");
+        break;
       case "guide":
         navigate("/guide");
         break;
