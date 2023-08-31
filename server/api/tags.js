@@ -11,6 +11,7 @@ router.get("/", async (req, res, next) => {
       where: {
         userId: userId,
       },
+      attributes: ["name"],
     });
     res.send(tags);
   } catch (err) {
