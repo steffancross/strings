@@ -1,7 +1,7 @@
 const router = require("express").Router();
 module.exports = router;
 const { models } = require("../db");
-const { Tag } = models;
+const { Tag, Text } = models;
 
 // get all
 router.get("/", async (req, res, next) => {
@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
       where: {
         userId: userId,
       },
-      attributes: ["name"],
+      attributes: ["name", "id"],
     });
     res.send(tags);
   } catch (err) {
@@ -25,6 +25,12 @@ router.get("/:id", async (req, res, next) => {
     const tag = await Tag.findOne({
       where: {
         id: req.params.id,
+      },
+      attributes: ["name", "id"],
+      include: {
+        model: Text,
+        attributes: ["content"],
+        through: { attributes: [] },
       },
     });
     res.send(tag);
