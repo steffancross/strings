@@ -30,7 +30,7 @@ const Tags = () => {
         <div className="text-container">
           {tags.map((tag, index) => (
             <div className="individual-text" key={index}>
-              <Link className="text-link" to={`/mat/${tag.id}`}>
+              <Link className="text-link" to={`/tags/${tag.id}`}>
                 <p>{tag.name}</p>
               </Link>
             </div>

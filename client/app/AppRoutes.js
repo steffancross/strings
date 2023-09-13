@@ -7,6 +7,7 @@ import Main from "../features/main/Main";
 import SingleMat from "../features/singlemat/Singlemat";
 import Guide from "../features/guide/Guide";
 import Tags from "../features/tags/Tags";
+import SingleTag from "../features/singletag/Singletag";
 import { me } from "./store";
 
 const AppRoutes = () => {
@@ -31,6 +32,7 @@ const AppRoutes = () => {
           <Route to="/" element={<Main />} />
           <Route path="/mat/:id" element={<SingleMat />} />
           <Route path="/tags" element={<Tags />} />
+          <Route path="/tags/:id" element={<SingleTag />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/*" element={<Main />} />
         </Routes>
