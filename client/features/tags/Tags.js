@@ -40,7 +40,7 @@ const Tags = () => {
         <div>
           <p>Looks like you don't have any tags yet. Click</p>
           <button onClick={() => setShowNewMat(true)}>here</button>
-          <p>to make add your first mat.</p>
+          <p>to make your first mat.</p>
         </div>
       )}
       <Popup

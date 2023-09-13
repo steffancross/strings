@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   fetchTexts,
   fetchTextsByContent,
@@ -9,10 +9,12 @@ import {
 import NewMat from "../newMat/Newmat";
 import Navbar from "../navbar/Navbar";
 import Popup from "reactjs-popup";
+import { setShouldFetch } from "../main/flagSlice";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchInput, setSearchInput] = useState("");
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
@@ -25,21 +27,33 @@ const SearchBar = () => {
       .split(":")
       .map((str) => str.trim().toLowerCase());
 
+    const atHome = location.pathname === "/";
+    const notAtHome = () => {
+      if (!atHome) {
+        dispatch(setShouldFetch(false));
+        navigate("/");
+      }
+    };
+
     switch (command) {
       case "filter":
+        notAtHome();
         dispatch(fetchTextsByTag({ userId: userId, tagName: value }));
         break;
       case "search":
+        notAtHome();
         dispatch(fetchTextsByContent({ userId: userId, searchTerm: value }));
-        break;
-      case "clear":
-        dispatch(fetchTexts({ userId }));
         break;
       case "new":
         setShowNewMat(true);
         break;
       case "home":
-        navigate("/");
+        if (!atHome) {
+          dispatch(setShouldFetch(true));
+          navigate("/");
+        } else {
+          dispatch(fetchTexts({ userId: userId }));
+        }
         break;
       case "tags":
         navigate("/tags");

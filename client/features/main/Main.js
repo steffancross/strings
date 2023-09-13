@@ -5,13 +5,15 @@ import { Link } from "react-router-dom";
 import { fetchTexts } from "./mainSlice";
 import NewMat from "../newMat/Newmat";
 import Popup from "reactjs-popup";
+import { setShouldFetch } from "./flagSlice";
 
 const Main = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
-  const texts = useSelector((state) => state.texts);
+  const texts = useSelector((state) => state.mats);
+  const shouldFetch = useSelector((state) => state.shouldFetch);
   const [showNewMat, setShowNewMat] = useState(false);
 
   const closeNewMatPopup = () => {
@@ -19,7 +21,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn && user) {
+    if (isLoggedIn && user && shouldFetch) {
       dispatch(fetchTexts({ userId }));
     }
   }, [dispatch, user]);
