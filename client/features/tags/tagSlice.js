@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// get all text
+// get all tags
 export const fetchTags = createAsyncThunk("tags/fetch", async ({ userId }) => {
   const { data } = await axios.get(`/api/tags?userId=${userId}`);
   return data;

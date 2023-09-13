@@ -4,13 +4,15 @@ import authReducer from "../features/auth/authSlice";
 import mainSlice from "../features/main/mainSlice";
 import singlematSlice from "../features/singlemat/singlematSlice";
 import tagSlice from "../features/tags/tagSlice";
+import singletagSlice from "../features/singletag/singletagSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    texts: mainSlice,
+    mats: mainSlice,
     mat: singlematSlice,
     tags: tagSlice,
+    tag: singletagSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

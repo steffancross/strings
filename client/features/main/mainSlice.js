@@ -33,7 +33,7 @@ export const fetchTextsByContent = createAsyncThunk(
 );
 
 const mainSlice = createSlice({
-  name: "texts",
+  name: "mats",
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
