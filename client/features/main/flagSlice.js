@@ -2,13 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const flagSlice = createSlice({
   name: "flag",
-  initialState: true,
+  initialState: {
+    shouldFetch: true,
+    showNewMat: false,
+  },
   reducers: {
     setShouldFetch: (state, action) => {
-      return action.payload;
+      state.shouldFetch = action.payload;
+    },
+    setShowNewMat: (state, action) => {
+      state.showNewMat = action.payload;
     },
   },
 });
 
-export const { setShouldFetch } = flagSlice.actions;
+export const { setShouldFetch, setShowNewMat } = flagSlice.actions;
 export default flagSlice.reducer;

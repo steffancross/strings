@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchTexts } from "./mainSlice";
-import NewMat from "../newMat/Newmat";
-import Popup from "reactjs-popup";
-import { setShouldFetch } from "./flagSlice";
+import { setShowNewMat } from "./flagSlice";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -13,12 +11,7 @@ const Main = () => {
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
   const texts = useSelector((state) => state.mats);
-  const shouldFetch = useSelector((state) => state.shouldFetch);
-  const [showNewMat, setShowNewMat] = useState(false);
-
-  const closeNewMatPopup = () => {
-    setShowNewMat(false);
-  };
+  const shouldFetch = useSelector((state) => state.flags.shouldFetch);
 
   useEffect(() => {
     if (isLoggedIn && user && shouldFetch) {
@@ -44,18 +37,10 @@ const Main = () => {
             Looks like you don't have any mats yet, or any associated with that
             search. Click
           </p>
-          <button onClick={() => setShowNewMat(true)}>here</button>
+          <button onClick={() => dispatch(setShowNewMat(true))}>here</button>
           <p>to make your first one.</p>
         </div>
       )}
-      <Popup
-        className="add-popup"
-        open={showNewMat}
-        onClose={() => setShowNewMat(false)}
-        modal
-      >
-        <NewMat closePopup={closeNewMatPopup} />
-      </Popup>
     </>
   );
 };
