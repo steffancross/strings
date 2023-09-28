@@ -6,10 +6,8 @@ import {
   fetchTextsByContent,
   fetchTextsByTag,
 } from "../main/mainSlice";
-import NewMat from "../newMat/Newmat";
 import Navbar from "../navbar/Navbar";
-import Popup from "reactjs-popup";
-import { setShouldFetch } from "../main/flagSlice";
+import { setShouldFetch, setShowNewMat } from "../main/flagSlice";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -19,7 +17,6 @@ const SearchBar = () => {
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
   const inputRef = useRef(null);
-  const [showNewMat, setShowNewMat] = useState(false);
   const [commandNotRecog, setCommandNotRecog] = useState(false);
 
   const handleSearch = () => {
@@ -45,7 +42,7 @@ const SearchBar = () => {
         dispatch(fetchTextsByContent({ userId: userId, searchTerm: value }));
         break;
       case "new":
-        setShowNewMat(true);
+        dispatch(setShowNewMat(true));
         break;
       case "home":
         if (!atHome) {
@@ -84,10 +81,6 @@ const SearchBar = () => {
     }
   };
 
-  const closeNewMatPopup = () => {
-    setShowNewMat(false);
-  };
-
   useEffect(() => {
     document.addEventListener("keydown", handleGlobalKeyDown);
     return () => {
@@ -112,14 +105,6 @@ const SearchBar = () => {
         <Navbar />
       </div>
       {commandNotRecog && <div id="cmd-not-rcg">Unknown Command</div>}
-      <Popup
-        className="add-popup"
-        open={showNewMat}
-        onClose={() => setShowNewMat(false)}
-        modal
-      >
-        <NewMat closePopup={closeNewMatPopup} />
-      </Popup>
     </>
   );
 };

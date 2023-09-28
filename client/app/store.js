@@ -14,7 +14,7 @@ const store = configureStore({
     mat: singlematSlice,
     tags: tagSlice,
     tag: singletagSlice,
-    shouldFetch: flagSlice,
+    flags: flagSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
