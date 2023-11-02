@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMat } from "./newmatSlice";
 import { fetchTexts } from "../main/mainSlice";
-import { setShowNewMat } from "../main/flagSlice";
+import { setShowNewMat } from "../utils/flagSlice";
 import Popup from "reactjs-popup";
 
 const NewMat = () => {

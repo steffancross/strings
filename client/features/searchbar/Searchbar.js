@@ -7,7 +7,7 @@ import {
   fetchTextsByTag,
 } from "../main/mainSlice";
 import Navbar from "../navbar/Navbar";
-import { setShouldFetch, setShowNewMat } from "../main/flagSlice";
+import { setShouldFetch, setShowNewMat } from "../utils/flagSlice";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
