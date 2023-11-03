@@ -7,6 +7,7 @@ const flagSlice = createSlice({
     showNewMat: false,
     showOverlay: false,
     showSingleMat: false,
+    showSingleTag: false,
     currentId: null,
   },
   reducers: {
@@ -22,10 +23,14 @@ const flagSlice = createSlice({
     setShowSingleMat: (state, action) => {
       state.showSingleMat = action.payload;
     },
+    setShowSingleTag: (state, action) => {
+      state.showSingleTag = action.payload;
+    },
     setAllFalse: (state) => {
       state.showNewMat = false;
       state.showOverlay = false;
       state.showSingleMat = false;
+      state.showSingleTag = false;
     },
     setCurrentId: (state, action) => {
       state.currentId = action.payload;
@@ -38,6 +43,7 @@ export const {
   setShowNewMat,
   setShowOverlay,
   setShowSingleMat,
+  setShowSingleTag,
   setAllFalse,
   setCurrentId,
 } = flagSlice.actions;

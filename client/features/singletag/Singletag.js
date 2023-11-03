@@ -7,7 +7,7 @@ import { fetchTag } from "./singletagSlice";
 const SingleTag = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const id = useSelector((state) => state.flags.currentId);
 
   const tag = useSelector((state) => state.tag);
 
@@ -23,11 +23,13 @@ const SingleTag = () => {
 
   return (
     <>
-      {tag && (
-        <div>
-          <p>{tag.name}</p>
-        </div>
-      )}
+      <div className="popup">
+        {tag && (
+          <div>
+            <p>{tag.name}</p>
+          </div>
+        )}
+      </div>
     </>
   );
 };

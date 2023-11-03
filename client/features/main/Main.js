@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTexts } from "./mainSlice";
 import { setShowNewMat } from "../utils/flagSlice";
-// import { singleMatPopup } from "../utils/popupFunctions";
 import {
   setCurrentId,
   setShowSingleMat,

@@ -30,7 +30,6 @@ const AppRoutes = () => {
       {isLoggedIn ? (
         <Routes>
           <Route to="/" element={<Main />} />
-          <Route path="/mat/:id" element={<SingleMat />} />
           <Route path="/tags" element={<Tags />} />
           <Route path="/tags/:id" element={<SingleTag />} />
           <Route path="/guide" element={<Guide />} />

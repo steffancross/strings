@@ -6,11 +6,13 @@ import SearchBar from "../features/searchbar/Searchbar";
 import NewMat from "../features/newMat/Newmat";
 import Overlay from "../features/overlay/Overlay";
 import SingleMat from "../features/singlemat/Singlemat";
+import SingleTag from "../features/singletag/Singletag";
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const showOverlay = useSelector((state) => state.flags.showOverlay);
   const showSingleMat = useSelector((state) => state.flags.showSingleMat);
+  const showSingleTag = useSelector((state) => state.flags.showSingleTag);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,6 +24,7 @@ const App = () => {
       {isLoggedIn && <SearchBar />}
       {isLoggedIn && <NewMat />}
       {isLoggedIn && showSingleMat && <SingleMat />}
+      {isLoggedIn && showSingleTag && <SingleTag />}
       {isLoggedIn && showOverlay && <Overlay />}
       <AppRoutes />
     </>

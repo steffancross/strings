@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchTags } from "./tagSlice";
 import NewMat from "../newMat/Newmat";
+import {
+  setCurrentId,
+  setShowSingleTag,
+  setShowOverlay,
+} from "../utils/flagSlice";
 import Popup from "reactjs-popup";
 
 const Tags = () => {
@@ -18,6 +23,12 @@ const Tags = () => {
     setShowNewMat(false);
   };
 
+  const singleTagPopup = (id) => {
+    dispatch(setCurrentId(id));
+    dispatch(setShowOverlay(true));
+    dispatch(setShowSingleTag(true));
+  };
+
   useEffect(() => {
     if (isLoggedIn && user) {
       dispatch(fetchTags({ userId }));
@@ -30,9 +41,9 @@ const Tags = () => {
         <div className="text-container">
           {tags.map((tag, index) => (
             <div className="individual-text" key={index}>
-              <Link className="text-link" to={`/tags/${tag.id}`}>
+              <div className="text-link" onClick={() => singleTagPopup(tag.id)}>
                 <p>{tag.name}</p>
-              </Link>
+              </div>
             </div>
           ))}
         </div>
