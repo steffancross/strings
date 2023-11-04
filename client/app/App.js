@@ -13,6 +13,7 @@ const App = () => {
   const showOverlay = useSelector((state) => state.flags.showOverlay);
   const showSingleMat = useSelector((state) => state.flags.showSingleMat);
   const showSingleTag = useSelector((state) => state.flags.showSingleTag);
+  const showNewMat = useSelector((state) => state.flags.showNewMat);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,9 +23,9 @@ const App = () => {
   return (
     <>
       {isLoggedIn && <SearchBar />}
-      {isLoggedIn && <NewMat />}
       {isLoggedIn && showSingleMat && <SingleMat />}
       {isLoggedIn && showSingleTag && <SingleTag />}
+      {isLoggedIn && showNewMat && <NewMat />}
       {isLoggedIn && showOverlay && <Overlay />}
       <AppRoutes />
     </>

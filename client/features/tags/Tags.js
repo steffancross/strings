@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { fetchTags } from "./tagSlice";
-import NewMat from "../newMat/Newmat";
 import {
   setCurrentId,
   setShowSingleTag,
+  setShowNewMat,
   setShowOverlay,
 } from "../utils/flagSlice";
-import Popup from "reactjs-popup";
 
 const Tags = () => {
   const dispatch = useDispatch();
@@ -17,16 +15,16 @@ const Tags = () => {
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
   const tags = useSelector((state) => state.tags);
-  const [showNewMat, setShowNewMat] = useState(false);
-
-  const closeNewMatPopup = () => {
-    setShowNewMat(false);
-  };
 
   const singleTagPopup = (id) => {
     dispatch(setCurrentId(id));
     dispatch(setShowOverlay(true));
     dispatch(setShowSingleTag(true));
+  };
+
+  const newMatPopup = () => {
+    dispatch(setShowOverlay(true));
+    dispatch(setShowNewMat(true));
   };
 
   useEffect(() => {
@@ -50,18 +48,10 @@ const Tags = () => {
       ) : (
         <div>
           <p>Looks like you don't have any tags yet. Click</p>
-          <button onClick={() => setShowNewMat(true)}>here</button>
+          <button onClick={() => newMatPopup()}>here</button>
           <p>to make your first mat.</p>
         </div>
       )}
-      <Popup
-        className="add-popup"
-        open={showNewMat}
-        onClose={() => setShowNewMat(false)}
-        modal
-      >
-        <NewMat closePopup={closeNewMatPopup} />
-      </Popup>
     </>
   );
 };

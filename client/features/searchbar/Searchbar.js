@@ -7,7 +7,11 @@ import {
   fetchTextsByTag,
 } from "../main/mainSlice";
 import Navbar from "../navbar/Navbar";
-import { setShouldFetch, setShowNewMat } from "../utils/flagSlice";
+import {
+  setShouldFetch,
+  setShowNewMat,
+  setShowOverlay,
+} from "../utils/flagSlice";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -42,6 +46,7 @@ const SearchBar = () => {
         dispatch(fetchTextsByContent({ userId: userId, searchTerm: value }));
         break;
       case "new":
+        dispatch(setShowOverlay(true));
         dispatch(setShowNewMat(true));
         break;
       case "home":

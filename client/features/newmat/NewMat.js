@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMat } from "./newmatSlice";
 import { fetchTexts } from "../main/mainSlice";
-import { setShowNewMat } from "../utils/flagSlice";
-import Popup from "reactjs-popup";
+import { setAllFalse } from "../utils/flagSlice";
 
 const NewMat = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
-  const showNewMat = useSelector((state) => state.flags.showNewMat);
   const [formData, setFormData] = useState({
     content: "",
     link: "",
@@ -61,57 +59,55 @@ const NewMat = () => {
       tags: "",
     });
 
-    dispatch(setShowNewMat(false));
+    dispatch(setAllFalse());
   };
 
   return (
-    <Popup open={showNewMat} onClose={() => dispatch(setShowNewMat(false))}>
-      <div>
-        <button onClick={() => dispatch(setShowNewMat(false))}>CLOSE</button>
-        <h2>Add New Mat</h2>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Content:
-            <textarea
-              name="content"
-              value={formData.content}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-          </label>
-          <label>
-            Link:
-            <input
-              type="text"
-              name="link"
-              value={formData.link}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-          </label>
-          <label>
-            Description:
-            <textarea
-              type="text"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Tags:
-            <input
-              type="text"
-              name="tags"
-              value={formData.tags}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-          </label>
-          <button type="submit">Add Text</button>
-        </form>
-      </div>
-    </Popup>
+    <div className="popup">
+      <button onClick={() => dispatch(setAllFalse())}>CLOSE</button>
+      <h2>Add New Mat</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Content:
+          <textarea
+            name="content"
+            value={formData.content}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+        </label>
+        <label>
+          Link:
+          <input
+            type="text"
+            name="link"
+            value={formData.link}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+        </label>
+        <label>
+          Description:
+          <textarea
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Tags:
+          <input
+            type="text"
+            name="tags"
+            value={formData.tags}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+        </label>
+        <button type="submit">Add Text</button>
+      </form>
+    </div>
   );
 };
 
