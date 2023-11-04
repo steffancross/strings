@@ -5,7 +5,7 @@ import mainSlice from "../features/main/mainSlice";
 import singlematSlice from "../features/singlemat/singlematSlice";
 import tagSlice from "../features/tags/tagSlice";
 import singletagSlice from "../features/singletag/singletagSlice";
-import flagSlice from "../features/main/flagSlice";
+import flagSlice from "../features/utils/flagSlice";
 
 const store = configureStore({
   reducer: {

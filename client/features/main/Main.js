@@ -1,9 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { fetchTexts } from "./mainSlice";
-import { setShowNewMat } from "./flagSlice";
+import {
+  setCurrentId,
+  setShowSingleMat,
+  setShowNewMat,
+  setShowOverlay,
+} from "../utils/flagSlice";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -12,6 +16,17 @@ const Main = () => {
   const userId = user.id;
   const texts = useSelector((state) => state.mats);
   const shouldFetch = useSelector((state) => state.flags.shouldFetch);
+
+  const singleMatPopup = (id) => {
+    dispatch(setCurrentId(id));
+    dispatch(setShowOverlay(true));
+    dispatch(setShowSingleMat(true));
+  };
+
+  const newMatPopup = () => {
+    dispatch(setShowOverlay(true));
+    dispatch(setShowNewMat(true));
+  };
 
   useEffect(() => {
     if (isLoggedIn && user && shouldFetch) {
@@ -25,9 +40,12 @@ const Main = () => {
         <div className="text-container">
           {texts.map((text, index) => (
             <div className="individual-text" key={index}>
-              <Link className="text-link" to={`/mat/${text.id}`}>
+              <div
+                className="text-link"
+                onClick={() => singleMatPopup(text.id)}
+              >
                 <p>{text.content}</p>
-              </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -37,7 +55,7 @@ const Main = () => {
             Looks like you don't have any mats yet, or any associated with that
             search. Click
           </p>
-          <button onClick={() => dispatch(setShowNewMat(true))}>here</button>
+          <button onClick={() => newMatPopup()}>here</button>
           <p>to make your first one.</p>
         </div>
       )}
