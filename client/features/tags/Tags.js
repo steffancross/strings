@@ -8,6 +8,7 @@ import {
   setShowNewMat,
   setShowOverlay,
 } from "../utils/flagSlice";
+import { motion } from "framer-motion";
 
 const Tags = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,13 @@ const Tags = () => {
       {isLoading ? (
         <div></div>
       ) : tags.length > 0 ? (
-        <div className="text-container">
+        <motion.div
+          className="text-container"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
           {tags.map((tag, index) => (
             <div className="individual-text" key={index}>
               <div className="text-link" onClick={() => singleTagPopup(tag.id)}>
@@ -49,7 +56,7 @@ const Tags = () => {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       ) : (
         <div>
           <p>Looks like you don't have any tags yet. Click</p>

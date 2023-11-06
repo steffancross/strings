@@ -8,6 +8,7 @@ import {
   setShowNewMat,
   setShowOverlay,
 } from "../utils/flagSlice";
+import { motion } from "framer-motion";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,13 @@ const Main = () => {
       {isLoading ? (
         <div></div>
       ) : texts.length > 0 ? (
-        <div className="text-container">
+        <motion.div
+          className="text-container"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
           {texts.map((text, index) => (
             <div className="individual-text" key={index}>
               <div
@@ -53,7 +60,7 @@ const Main = () => {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       ) : (
         <div>
           <p>

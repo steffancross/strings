@@ -19,13 +19,11 @@ const AppRoutes = () => {
     });
   }, [dispatch]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div>
-      {isLoggedIn ? (
+      {isLoading ? (
+        <div></div>
+      ) : isLoggedIn ? (
         <Routes>
           <Route to="/" element={<Main />} />
           <Route path="/tags" element={<Tags />} />
