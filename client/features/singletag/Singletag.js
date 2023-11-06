@@ -1,8 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchTag } from "./singletagSlice";
+import { motion } from "framer-motion";
 
 const SingleTag = () => {
   const dispatch = useDispatch();
@@ -23,13 +24,19 @@ const SingleTag = () => {
 
   return (
     <>
-      <div className="popup">
+      <motion.div
+        className="popup"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
         {tag && (
           <div>
             <p>{tag.name}</p>
           </div>
         )}
-      </div>
+      </motion.div>
     </>
   );
 };

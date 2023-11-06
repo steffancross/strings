@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMat } from "./newmatSlice";
 import { fetchTexts } from "../main/mainSlice";
 import { setAllFalse } from "../utils/flagSlice";
+import { motion } from "framer-motion";
 
 const NewMat = () => {
   const dispatch = useDispatch();
@@ -63,7 +64,13 @@ const NewMat = () => {
   };
 
   return (
-    <div className="popup">
+    <motion.div
+      className="popup"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <button onClick={() => dispatch(setAllFalse())}>CLOSE</button>
       <h2>Add New Mat</h2>
       <form onSubmit={handleSubmit}>
@@ -107,7 +114,7 @@ const NewMat = () => {
         </label>
         <button type="submit">Add Text</button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchMat, deleteMat } from "./singlematSlice";
 import EditMat from "../editmat/EditMat";
+import { motion } from "framer-motion";
 
 const SingleMat = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,13 @@ const SingleMat = () => {
 
   return (
     <>
-      <div className="popup">
+      <motion.div
+        className="popup"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
         {mat && tags && (
           <div>
             <div>
@@ -44,7 +51,7 @@ const SingleMat = () => {
           </div>
         )}
         <EditMat />
-      </div>
+      </motion.div>
     </>
   );
 };

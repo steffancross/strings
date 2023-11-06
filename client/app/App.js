@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { me } from "./store";
 import AppRoutes from "./AppRoutes";
 import SearchBar from "../features/searchbar/Searchbar";
-import NewMat from "../features/newMat/Newmat";
+import NewMat from "../features/newmat/NewMat";
 import Overlay from "../features/overlay/Overlay";
 import SingleMat from "../features/singlemat/Singlemat";
 import SingleTag from "../features/singletag/Singletag";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -23,10 +24,12 @@ const App = () => {
   return (
     <>
       {isLoggedIn && <SearchBar />}
-      {isLoggedIn && showSingleMat && <SingleMat />}
-      {isLoggedIn && showSingleTag && <SingleTag />}
-      {isLoggedIn && showNewMat && <NewMat />}
-      {isLoggedIn && showOverlay && <Overlay />}
+      <AnimatePresence>
+        {isLoggedIn && showSingleMat && <SingleMat key={1} />}
+        {isLoggedIn && showSingleTag && <SingleTag key={2} />}
+        {isLoggedIn && showNewMat && <NewMat key={3} />}
+        {isLoggedIn && showOverlay && <Overlay key={4} />}
+      </AnimatePresence>
       <AppRoutes />
     </>
   );
