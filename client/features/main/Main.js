@@ -45,10 +45,11 @@ const Main = () => {
       ) : texts.length > 0 ? (
         <motion.div
           className="text-container"
+          key={texts.map((text) => text.id).join(",")}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
         >
           {texts.map((text, index) => (
             <div className="individual-text" key={index}>
@@ -62,14 +63,19 @@ const Main = () => {
           ))}
         </motion.div>
       ) : (
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           <p>
             Looks like you don't have any mats yet, or any associated with that
             search. Click
           </p>
           <button onClick={() => newMatPopup()}>here</button>
           <p>to make your first one.</p>
-        </div>
+        </motion.div>
       )}
     </>
   );
