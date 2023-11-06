@@ -64,6 +64,7 @@ const Main = () => {
         </motion.div>
       ) : (
         <motion.div
+          className="no-results"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

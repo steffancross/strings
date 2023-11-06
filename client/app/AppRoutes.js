@@ -20,7 +20,7 @@ const AppRoutes = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       {isLoading ? (
         <div></div>
       ) : isLoggedIn ? (
@@ -43,7 +43,7 @@ const AppRoutes = () => {
           />
         </Routes>
       )}
-    </div>
+    </>
   );
 };
 
