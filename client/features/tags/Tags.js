@@ -15,6 +15,7 @@ const Tags = () => {
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
   const tags = useSelector((state) => state.tags);
+  const [isLoading, setIsLoading] = useState(true);
 
   const singleTagPopup = (id) => {
     dispatch(setCurrentId(id));
@@ -29,13 +30,17 @@ const Tags = () => {
 
   useEffect(() => {
     if (isLoggedIn && user) {
-      dispatch(fetchTags({ userId }));
+      dispatch(fetchTags({ userId })).then(() => {
+        setIsLoading(false);
+      });
     }
   }, [dispatch, user]);
 
   return (
     <>
-      {tags.length > 0 ? (
+      {isLoading ? (
+        <div></div>
+      ) : tags.length > 0 ? (
         <div className="text-container">
           {tags.map((tag, index) => (
             <div className="individual-text" key={index}>

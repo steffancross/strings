@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTexts } from "./mainSlice";
@@ -16,6 +16,7 @@ const Main = () => {
   const userId = user.id;
   const texts = useSelector((state) => state.mats);
   const shouldFetch = useSelector((state) => state.flags.shouldFetch);
+  const [isLoading, setIsLoading] = useState(true);
 
   const singleMatPopup = (id) => {
     dispatch(setCurrentId(id));
@@ -30,13 +31,17 @@ const Main = () => {
 
   useEffect(() => {
     if (isLoggedIn && user && shouldFetch) {
-      dispatch(fetchTexts({ userId }));
+      dispatch(fetchTexts({ userId })).then(() => {
+        setIsLoading(false);
+      });
     }
   }, [dispatch, user]);
 
   return (
     <>
-      {texts.length > 0 ? (
+      {isLoading ? (
+        <div></div>
+      ) : texts.length > 0 ? (
         <div className="text-container">
           {texts.map((text, index) => (
             <div className="individual-text" key={index}>

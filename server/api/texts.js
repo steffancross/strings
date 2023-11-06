@@ -19,6 +19,7 @@ router.get("/", async (req, res, next) => {
         through: { attributes: [] },
       },
     });
+
     res.send(texts);
   } catch (err) {
     next(err);
@@ -41,6 +42,7 @@ router.get("/byTag", async (req, res, next) => {
         through: { attributes: [] },
       },
     });
+
     res.send(texts);
   } catch (err) {
     next(err);
