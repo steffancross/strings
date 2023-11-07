@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: garamond;
   margin: 0;
   padding: 0;
 }
@@ -63,8 +63,9 @@ form div {
 .top-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -73,6 +74,10 @@ form div {
   width: 300px;
   height: 40px;
   border: none;
+}
+
+.search-bar input:focus {
+  outline: none;
 }
 
 #cmd-not-rcg {
@@ -109,6 +114,23 @@ form div {
 #menu {
   display: flex;
   flex-direction: column;
+}
+
+#menu a {
+  padding-bottom: 10px;
+  text-decoration: none;
+}
+
+#menu a:focus {
+  outline: none;
+}
+
+#menu a:hover {
+  text-decoration: underline;
+}
+
+#menu div:hover {
+  text-decoration: underline;
 }
 
 /* OVERLAY */
