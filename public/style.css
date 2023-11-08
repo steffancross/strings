@@ -5,8 +5,14 @@
   --grid-cols: 6;
 }
 
-body {
+body,
+input,
+textarea,
+button {
   font-family: garamond;
+}
+
+body {
   margin: 0;
   padding: 0;
 }
@@ -66,6 +72,22 @@ form div {
 
 .auth-inputs input {
   margin-right: 5px;
+}
+
+.auth-btn {
+  margin-top: 0px;
+}
+
+.auth-btn button {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  font-size: 1.1rem;
+  padding: 0;
+}
+
+.auth-btn button:hover {
+  cursor: pointer;
 }
 
 /* SEARCHBAR */
