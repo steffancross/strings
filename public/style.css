@@ -23,29 +23,11 @@ a {
   color: #000;
 }
 
-label {
-  display: block;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
 /* Generic center div */
 .centering-div {
   display: grid;
   place-items: center;
   min-height: 100%;
-}
-
-/* AUTH */
-.auth-inputs {
-  display: flex;
-}
-
-.auth-inputs input {
-  margin-right: 5px;
 }
 
 /* MAIN */
@@ -66,6 +48,24 @@ form div {
 
 .text-link :hover {
   font-style: italic;
+}
+
+/* AUTH */
+label {
+  display: block;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+.auth-inputs {
+  display: flex;
+}
+
+.auth-inputs input {
+  margin-right: 5px;
 }
 
 /* SEARCHBAR */
