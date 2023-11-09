@@ -15,6 +15,7 @@ button {
 body {
   margin: 0;
   padding: 0;
+  color: var(--primary-color);
 }
 
 #app {
@@ -26,7 +27,7 @@ body {
 
 a {
   text-decoration: underline;
-  color: #000;
+  color: var(--primary-color);
 }
 
 /* Generic center div */
@@ -123,6 +124,20 @@ form div {
 .notloggedin {
   display: flex;
   align-items: center;
+  margin-top: 16px;
+}
+
+.notloggedin p {
+  margin: 0px;
+}
+
+#title {
+  position: fixed;
+  left: 0;
+  top: 10%;
+  font-size: 4rem;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 /* NEWMAT */

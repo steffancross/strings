@@ -25,6 +25,7 @@ const AuthForm = ({ name, displayName }) => {
 
   return (
     <div className="centering-div">
+      <p id="title">AD.HOC</p>
       <form onSubmit={handleSubmit} name={name}>
         <div className="auth-inputs">
           <input name="email" type="text" placeholder="Email*" />
