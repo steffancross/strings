@@ -27,30 +27,30 @@ const SingleMat = () => {
     <>
       <motion.div
         className="popup"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: "-40%", x: "-50%" }}
+        animate={{ opacity: 1, y: "-50%", x: "-50%" }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
         {mat && tags && (
-          <div>
-            <div>
+          <div className="single-mattag">
+            <div className="single-content">
               <p>{mat.content}</p>
             </div>
-            <div>
+            <div className="single-rest">
               <p>Description: {mat.description}</p>
               <p>Link: {mat.link}</p>
               {tags.map((tag, index) => (
                 <p key={index}>{tag.name}</p>
               ))}
-            </div>
-            <div>Edit Mat</div>
-            <div>
-              <button onClick={handleDelete}>Delete Mat</button>
+              <div>Edit Mat</div>
+              <div>
+                <button onClick={handleDelete}>Delete Mat</button>
+              </div>
             </div>
           </div>
         )}
-        <EditMat />
+        {/* <EditMat /> */}
       </motion.div>
     </>
   );
