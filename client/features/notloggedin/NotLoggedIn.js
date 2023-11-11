@@ -1,12 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const NotLoggedIn = () => {
   return (
     <>
       <div className="centering-div">
-        <div>
-          <p id="title">AD.HOC</p>
+        <p id="title">AD.HOC</p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.0, delay: 0.5 }}
+        >
           <p>Welcome to Ad.hoc</p>
           <p>This is a place to archive and catalogue words and phrases.</p>
           <p>
@@ -27,7 +33,7 @@ const NotLoggedIn = () => {
             <p>Or if you are new, you can make a free account&nbsp;</p>
             <Link to="/signup">here</Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   );
