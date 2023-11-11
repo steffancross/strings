@@ -38,11 +38,20 @@ const SingleMat = () => {
               <p>{mat.content}</p>
             </div>
             <div className="single-rest">
-              <p>Description: {mat.description}</p>
-              <p>Link: {mat.link}</p>
-              {tags.map((tag, index) => (
-                <p key={index}>{tag.name}</p>
-              ))}
+              <div className="single-labels">
+                <small>Description</small>
+                <p>{mat.description}</p>
+              </div>
+              <div className="single-labels">
+                <small>Link</small>
+                <p>{mat.link}</p>
+              </div>
+              <div className="single-labels">
+                <small>Tags</small>
+                {tags.map((tag, index) => (
+                  <p key={index}>{tag.name}</p>
+                ))}
+              </div>
               <div>Edit Mat</div>
               <div>
                 <button onClick={handleDelete}>Delete Mat</button>
