@@ -1,7 +1,7 @@
 :root {
   --primary-color: #000;
   --secondary-color: #fff;
-  --tertiary-color: #f6f6f6;
+  --tertiary-color: #b8b8b8;
   --grid-cols: 6;
 }
 
@@ -189,7 +189,8 @@ form div {
   left: 50%;
   top: 50%;
   background: var(--secondary-color);
-  width: 50%;
+  width: 500px;
+  height: 400px;
   border-radius: 7px;
   z-index: 999;
   box-shadow: 0px 10px 40px -5px rgba(0, 0, 0, 0.2);
@@ -214,10 +215,17 @@ form div {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0px 10px 0px 10px;
+  border: 1px solid blue;
 }
 
 .single-rest {
   display: flex;
   flex-direction: column;
   padding-left: 20px;
+  border: 1px solid green;
+}
+
+.single-labels small {
+  color: var(--tertiary-color);
 }

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchMat, deleteMat } from "./singlematSlice";
 import EditMat from "../editmat/EditMat";
+import { setAllFalse } from "../utils/flagSlice";
 import { motion } from "framer-motion";
 
 const SingleMat = () => {
@@ -15,7 +16,8 @@ const SingleMat = () => {
 
   const handleDelete = () => {
     dispatch(deleteMat(id)).then(() => {
-      navigate("/");
+      dispatch(setAllFalse());
+      location.reload();
     });
   };
 
