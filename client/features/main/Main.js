@@ -53,12 +53,13 @@ const Main = () => {
         >
           {texts.map((text, index) => (
             <div className="individual-text" key={index}>
-              <div
+              <motion.div
                 className="text-link"
                 onClick={() => singleMatPopup(text.id)}
+                whileHover={{ scale: 1.05 }}
               >
                 <p>{text.content}</p>
-              </div>
+              </motion.div>
             </div>
           ))}
         </motion.div>

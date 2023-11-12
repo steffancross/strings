@@ -61,10 +61,6 @@ a {
   text-decoration: none;
 }
 
-.text-link :hover {
-  font-style: italic;
-}
-
 /* AUTH */
 label {
   display: block;

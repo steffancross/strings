@@ -51,9 +51,13 @@ const Tags = () => {
         >
           {tags.map((tag, index) => (
             <div className="individual-text" key={index}>
-              <div className="text-link" onClick={() => singleTagPopup(tag.id)}>
+              <motion.div
+                className="text-link"
+                onClick={() => singleTagPopup(tag.id)}
+                whileHover={{ scale: 1.05 }}
+              >
                 <p>{tag.name}</p>
-              </div>
+              </motion.div>
             </div>
           ))}
         </motion.div>
