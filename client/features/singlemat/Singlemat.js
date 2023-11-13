@@ -1,7 +1,6 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { fetchMat, deleteMat } from "./singlematSlice";
 import EditMat from "../editmat/EditMat";
 import { setAllFalse } from "../utils/flagSlice";
@@ -9,10 +8,14 @@ import { motion } from "framer-motion";
 
 const SingleMat = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const id = useSelector((state) => state.flags.currentId);
   const mat = useSelector((state) => state.mat);
   const tags = useSelector((state) => state.mat.tags);
+  const [editMode, setEditMode] = useState(false);
+
+  const handleEdit = () => {
+    setEditMode(!editMode);
+  };
 
   const handleDelete = () => {
     dispatch(deleteMat(id)).then(() => {
@@ -39,29 +42,39 @@ const SingleMat = () => {
             <div className="single-content">
               <p>{mat.content}</p>
             </div>
-            <div className="single-rest">
-              <div className="single-labels">
-                <small>Description</small>
-                <p>{mat.description}</p>
+            {editMode ? (
+              <EditMat />
+            ) : (
+              <div className="single-rest">
+                <div className="single-labels">
+                  <small>Description</small>
+                  <p>{mat.description}</p>
+                </div>
+                <div className="single-labels">
+                  <small>Tags</small>
+                  <ul>
+                    {tags.map((tag, index) => (
+                      <li key={index}>{tag.name}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="single-labels">
+                  <a href={mat.link} target="blank">
+                    Go to source
+                  </a>
+                </div>
+                <div className="single-actions">
+                  <button className="single-edit" onClick={handleEdit}>
+                    Edit Mat
+                  </button>
+                  <button className="single-delete" onClick={handleDelete}>
+                    Delete Mat
+                  </button>
+                </div>
               </div>
-              <div className="single-labels">
-                <small>Link</small>
-                <p>{mat.link}</p>
-              </div>
-              <div className="single-labels">
-                <small>Tags</small>
-                {tags.map((tag, index) => (
-                  <p key={index}>{tag.name}</p>
-                ))}
-              </div>
-              <div>Edit Mat</div>
-              <div>
-                <button onClick={handleDelete}>Delete Mat</button>
-              </div>
-            </div>
+            )}
           </div>
         )}
-        {/* <EditMat /> */}
       </motion.div>
     </>
   );

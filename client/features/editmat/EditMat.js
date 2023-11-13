@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editMat } from "./editmatSlice";
 import { fetchMat } from "../singlemat/singlematSlice";
+import { setAllFalse } from "../utils/flagSlice";
 
 const EditMat = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,8 @@ const EditMat = () => {
       description: "",
       tags: "",
     });
+
+    dispatch(setAllFalse());
   };
 
   useEffect(() => {
@@ -110,6 +113,7 @@ const EditMat = () => {
           />
         </label>
         <button type="submit">Save</button>
+        <button onClick={() => dispatch(setAllFalse())}>Discard</button>
       </form>
     </div>
   );

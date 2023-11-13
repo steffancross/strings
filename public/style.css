@@ -215,8 +215,8 @@ form div {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 0px 10px 0px 10px;
-  border: 1px solid blue;
 }
 
 .single-rest {
@@ -226,6 +226,37 @@ form div {
   border: 1px solid green;
 }
 
+.single-labels {
+  height: 100px;
+  border: 1px solid blue;
+  overflow-y: scroll;
+}
+
 .single-labels small {
+  font-size: 0.8rem;
   color: var(--tertiary-color);
+}
+
+.single-labels p {
+  margin-top: 0px;
+}
+
+/* SINGLE ACTIONS */
+.single-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single-edit {
+  width: 180px;
+  font-size: 1.3rem;
+}
+
+.single-delete {
+  width: 180px;
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-top: 5px;
 }
