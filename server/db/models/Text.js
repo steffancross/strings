@@ -3,11 +3,11 @@ const db = require("../db");
 
 const Text = db.define("text", {
   content: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
   },
   description: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: true,
   },
   link: {
