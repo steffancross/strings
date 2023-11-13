@@ -190,7 +190,7 @@ form div {
   top: 50%;
   background: var(--secondary-color);
   width: 500px;
-  height: 400px;
+  height: 350px;
   border-radius: 7px;
   z-index: 999;
   box-shadow: 0px 10px 40px -5px rgba(0, 0, 0, 0.2);
@@ -209,6 +209,7 @@ form div {
 .single-mattag {
   display: grid;
   grid-template-columns: 50% 50%;
+  height: 100%;
 }
 
 .single-content {
@@ -222,14 +223,13 @@ form div {
 .single-rest {
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
-  border: 1px solid green;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .single-labels {
-  height: 100px;
-  border: 1px solid blue;
-  overflow-y: scroll;
+  max-height: 120px;
 }
 
 .single-labels small {
@@ -238,6 +238,7 @@ form div {
 }
 
 .single-labels p {
+  overflow-y: scroll;
   margin-top: 0px;
 }
 

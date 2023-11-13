@@ -46,22 +46,24 @@ const SingleMat = () => {
               <EditMat />
             ) : (
               <div className="single-rest">
-                <div className="single-labels">
-                  <small>Description</small>
-                  <p>{mat.description}</p>
-                </div>
-                <div className="single-labels">
-                  <small>Tags</small>
-                  <ul>
-                    {tags.map((tag, index) => (
-                      <li key={index}>{tag.name}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="single-labels">
-                  <a href={mat.link} target="blank">
-                    Go to source
-                  </a>
+                <div>
+                  <div className="single-labels">
+                    <small>Description</small>
+                    <p>{mat.description}</p>
+                  </div>
+                  <div className="single-labels">
+                    <small>Tags</small>
+                    <ul>
+                      {tags.map((tag, index) => (
+                        <li key={index}>{tag.name}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="single-labels">
+                    <a href={mat.link} target="blank">
+                      Go to source
+                    </a>
+                  </div>
                 </div>
                 <div className="single-actions">
                   <button className="single-edit" onClick={handleEdit}>
