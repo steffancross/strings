@@ -72,51 +72,57 @@ const EditMat = ({ handleEdit }) => {
   }, [mat]);
 
   return (
-    <div>
-      <h2>Edit</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Content:
-          <textarea
-            name="content"
-            value={formData.content}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-          />
-        </label>
-        <label>
-          Link:
-          <input
-            type="text"
-            name="link"
-            value={formData.link}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-          />
-        </label>
-        <label>
-          Description:
-          <textarea
-            type="text"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Tags:
-          <input
-            type="text"
-            name="tags"
-            value={formData.tags}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-          />
-        </label>
-        <button type="submit">Save</button>
+    <>
+      <div>
+        <h2>Edit</h2>
+        <form onSubmit={handleSubmit} id="editInfo">
+          <label>
+            Content:
+            <textarea
+              name="content"
+              value={formData.content}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+            />
+          </label>
+          <label>
+            Link:
+            <input
+              type="text"
+              name="link"
+              value={formData.link}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+            />
+          </label>
+          <label>
+            Description:
+            <textarea
+              type="text"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Tags:
+            <input
+              type="text"
+              name="tags"
+              value={formData.tags}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+            />
+          </label>
+        </form>
+      </div>
+      <div>
+        <button type="submit" form="editInfo">
+          Save
+        </button>
         <button onClick={() => dispatch(setAllFalse())}>Discard</button>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
 

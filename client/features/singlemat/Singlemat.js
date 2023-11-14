@@ -42,39 +42,41 @@ const SingleMat = () => {
             <div className="single-content">
               <p>{mat.content}</p>
             </div>
-            {editMode ? (
-              <EditMat handleEdit={handleEdit} />
-            ) : (
-              <div className="single-rest">
-                <div>
-                  <div className="single-labels">
-                    <small>Description</small>
-                    <p className="single-desc">{mat.description}</p>
-                  </div>
-                  <div className="single-labels">
-                    <small>Tags</small>
-                    <div className="single-list">
-                      {tags.map((tag, index) => (
-                        <p key={index}>{tag.name}</p>
-                      ))}
+            <div className="single-rest">
+              {editMode ? (
+                <EditMat handleEdit={handleEdit} />
+              ) : (
+                <>
+                  <div>
+                    <div className="single-labels">
+                      <small>Description</small>
+                      <p className="single-desc">{mat.description}</p>
+                    </div>
+                    <div className="single-labels">
+                      <small>Tags</small>
+                      <div className="single-list">
+                        {tags.map((tag, index) => (
+                          <p key={index}>{tag.name}</p>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="single-labels">
+                      <a href={mat.link} target="blank">
+                        Go to source
+                      </a>
                     </div>
                   </div>
-                  <div className="single-labels">
-                    <a href={mat.link} target="blank">
-                      Go to source
-                    </a>
+                  <div className="single-actions">
+                    <button className="single-edit" onClick={handleEdit}>
+                      Edit Mat
+                    </button>
+                    <button className="single-delete" onClick={handleDelete}>
+                      Delete Mat
+                    </button>
                   </div>
-                </div>
-                <div className="single-actions">
-                  <button className="single-edit" onClick={handleEdit}>
-                    Edit Mat
-                  </button>
-                  <button className="single-delete" onClick={handleDelete}>
-                    Delete Mat
-                  </button>
-                </div>
-              </div>
-            )}
+                </>
+              )}
+            </div>
           </div>
         )}
       </motion.div>
