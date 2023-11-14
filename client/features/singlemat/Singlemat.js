@@ -49,15 +49,15 @@ const SingleMat = () => {
                 <div>
                   <div className="single-labels">
                     <small>Description</small>
-                    <p>{mat.description}</p>
+                    <p className="single-desc">{mat.description}</p>
                   </div>
                   <div className="single-labels">
                     <small>Tags</small>
-                    <ul>
+                    <div className="single-list">
                       {tags.map((tag, index) => (
-                        <li key={index}>{tag.name}</li>
+                        <p key={index}>{tag.name}</p>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                   <div className="single-labels">
                     <a href={mat.link} target="blank">

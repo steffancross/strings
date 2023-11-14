@@ -190,7 +190,7 @@ form div {
   top: 50%;
   background: var(--secondary-color);
   width: 500px;
-  height: 350px;
+  height: 380px;
   border-radius: 7px;
   z-index: 999;
   box-shadow: 0px 10px 40px -5px rgba(0, 0, 0, 0.2);
@@ -224,22 +224,43 @@ form div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 10px;
   padding-bottom: 10px;
 }
 
 .single-labels {
   max-height: 120px;
+  padding-top: 5px;
 }
 
-.single-labels small {
+.single-labels small,
+.single-labels a {
   font-size: 0.8rem;
   color: var(--tertiary-color);
+  text-decoration: none;
 }
 
-.single-labels p {
+.single-labels a:hover {
+  text-decoration: underline;
+}
+
+.single-desc {
   margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0 5px 0 5px;
+  height: 100px;
   overflow-y: auto;
+}
+
+.single-list {
+  list-style-type: none;
+  padding: 0 5px 0 5px;
+  height: 100px;
+  overflow-y: auto;
+}
+
+.single-list p {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 /* SINGLE ACTIONS */
