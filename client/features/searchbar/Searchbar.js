@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -80,17 +80,31 @@ const SearchBar = () => {
     }
   };
 
-  const handleGlobalKeyDown = (event) => {
-    console.log("+++", overlayOpen);
-    if (
-      event.key === "/" &&
-      document.activeElement !== inputRef.current &&
-      !overlayOpen
-    ) {
-      event.preventDefault();
-      inputRef.current.focus();
-    }
-  };
+  // const handleGlobalKeyDown = (event) => {
+  //   console.log("+++", overlayOpen);
+  //   if (
+  //     event.key === "/" &&
+  //     document.activeElement !== inputRef.current &&
+  //     !overlayOpen
+  //   ) {
+  //     event.preventDefault();
+  //     inputRef.current.focus();
+  //   }
+  // };
+
+  const handleGlobalKeyDown = useCallback(
+    (event) => {
+      if (
+        event.key === "/" &&
+        document.activeElement !== inputRef.current &&
+        !overlayOpen
+      ) {
+        event.preventDefault();
+        inputRef.current.focus();
+      }
+    },
+    [overlayOpen]
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", handleGlobalKeyDown);
