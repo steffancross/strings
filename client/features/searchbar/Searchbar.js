@@ -21,6 +21,7 @@ const SearchBar = () => {
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
   const inputRef = useRef(null);
+  const overlayOpen = useSelector((state) => state.flags.showOverlay);
   const [commandNotRecog, setCommandNotRecog] = useState(false);
 
   const handleSearch = () => {
@@ -80,7 +81,12 @@ const SearchBar = () => {
   };
 
   const handleGlobalKeyDown = (event) => {
-    if (event.key === "/" && document.activeElement !== inputRef.current) {
+    console.log("+++", overlayOpen);
+    if (
+      event.key === "/" &&
+      document.activeElement !== inputRef.current &&
+      !overlayOpen
+    ) {
       event.preventDefault();
       inputRef.current.focus();
     }
@@ -91,7 +97,7 @@ const SearchBar = () => {
     return () => {
       document.removeEventListener("keydown", handleGlobalKeyDown);
     };
-  }, []);
+  }, [handleGlobalKeyDown]);
 
   return (
     <>

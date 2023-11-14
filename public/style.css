@@ -229,7 +229,6 @@ form div {
 
 .single-labels {
   max-height: 120px;
-  /* padding-top: 5px; */
   margin: 10px;
   display: flex;
   flex-direction: column;
