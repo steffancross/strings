@@ -10,6 +10,11 @@ const textData = [
     userId: 1,
     tags: ["inspire", "hope"],
   },
+  {
+    content: "this is cool",
+    userId: 1,
+    tags: ["cool"],
+  },
 ];
 
 module.exports = textData;

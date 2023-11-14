@@ -71,7 +71,6 @@ const NewMat = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <button onClick={() => dispatch(setAllFalse())}>CLOSE</button>
       <h2>Add New Mat</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -112,7 +111,15 @@ const NewMat = () => {
             onKeyDown={handleKeyDown}
           />
         </label>
-        <button type="submit">Add Text</button>
+        <button className="single-edit" type="submit">
+          Add Text
+        </button>
+        <button
+          className="single-delete"
+          onClick={() => dispatch(setAllFalse())}
+        >
+          Discard
+        </button>
       </form>
     </motion.div>
   );

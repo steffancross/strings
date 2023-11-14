@@ -80,18 +80,6 @@ const SearchBar = () => {
     }
   };
 
-  // const handleGlobalKeyDown = (event) => {
-  //   console.log("+++", overlayOpen);
-  //   if (
-  //     event.key === "/" &&
-  //     document.activeElement !== inputRef.current &&
-  //     !overlayOpen
-  //   ) {
-  //     event.preventDefault();
-  //     inputRef.current.focus();
-  //   }
-  // };
-
   const handleGlobalKeyDown = useCallback(
     (event) => {
       if (

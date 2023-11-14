@@ -256,10 +256,6 @@ form div {
   border-color: var(--primary-color);
 }
 
-/* form#editInfo {
-  margin-top: -10px;
-} */
-
 .single-desc {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -299,3 +295,5 @@ form div {
   font-size: 1.3rem;
   margin-top: 5px;
 }
+
+/* NEWMAT */
