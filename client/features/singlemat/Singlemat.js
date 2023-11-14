@@ -43,7 +43,7 @@ const SingleMat = () => {
               <p>{mat.content}</p>
             </div>
             {editMode ? (
-              <EditMat />
+              <EditMat handleEdit={handleEdit} />
             ) : (
               <div className="single-rest">
                 <div>

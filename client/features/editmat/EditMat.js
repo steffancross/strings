@@ -4,7 +4,7 @@ import { editMat } from "./editmatSlice";
 import { fetchMat } from "../singlemat/singlematSlice";
 import { setAllFalse } from "../utils/flagSlice";
 
-const EditMat = () => {
+const EditMat = ({ handleEdit }) => {
   const dispatch = useDispatch();
   const mat = useSelector((state) => state.mat);
   const [formData, setFormData] = useState({
@@ -56,7 +56,8 @@ const EditMat = () => {
       tags: "",
     });
 
-    dispatch(setAllFalse());
+    handleEdit();
+    // dispatch(setAllFalse());
   };
 
   useEffect(() => {
