@@ -229,7 +229,10 @@ form div {
 
 .single-labels {
   max-height: 120px;
-  padding-top: 5px;
+  /* padding-top: 5px; */
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .single-labels small,
@@ -237,11 +240,26 @@ form div {
   font-size: 0.8rem;
   color: var(--tertiary-color);
   text-decoration: none;
+  margin-bottom: 5px;
 }
 
 .single-labels a:hover {
   text-decoration: underline;
 }
+
+.single-labels textarea {
+  border-color: var(--primary-color);
+  resize: none;
+  height: 50px;
+}
+
+.single-labels input {
+  border-color: var(--primary-color);
+}
+
+/* form#editInfo {
+  margin-top: -10px;
+} */
 
 .single-desc {
   margin-top: 0px;
@@ -282,5 +300,3 @@ form div {
   font-size: 1.3rem;
   margin-top: 5px;
 }
-
-/* EDIT MAT/TAG */

@@ -74,19 +74,27 @@ const EditMat = ({ handleEdit }) => {
   return (
     <>
       <div>
-        <h2>Edit</h2>
         <form onSubmit={handleSubmit} id="editInfo">
-          <label>
-            Content:
+          <div className="single-labels">
+            <small>Content</small>
             <textarea
               name="content"
               value={formData.content}
               onChange={handleChange}
               onKeyDown={handleKeyDown}
             />
-          </label>
-          <label>
-            Link:
+          </div>
+          <div className="single-labels">
+            <small>Description</small>
+            <textarea
+              type="text"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="single-labels">
+            <small>Link</small>
             <input
               type="text"
               name="link"
@@ -94,18 +102,9 @@ const EditMat = ({ handleEdit }) => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
             />
-          </label>
-          <label>
-            Description:
-            <textarea
-              type="text"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Tags:
+          </div>
+          <div className="single-labels">
+            <small>Tags</small>
             <input
               type="text"
               name="tags"
@@ -113,14 +112,19 @@ const EditMat = ({ handleEdit }) => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
             />
-          </label>
+          </div>
         </form>
       </div>
-      <div>
-        <button type="submit" form="editInfo">
+      <div className="single-actions">
+        <button className="single-edit" type="submit" form="editInfo">
           Save
         </button>
-        <button onClick={() => dispatch(setAllFalse())}>Discard</button>
+        <button
+          className="single-delete"
+          onClick={() => dispatch(setAllFalse())}
+        >
+          Discard
+        </button>
       </div>
     </>
   );

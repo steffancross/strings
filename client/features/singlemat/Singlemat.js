@@ -61,7 +61,7 @@ const SingleMat = () => {
                       </div>
                     </div>
                     <div className="single-labels">
-                      <a href={mat.link} target="blank">
+                      <a href={mat.link} target="_blank">
                         Go to source
                       </a>
                     </div>
