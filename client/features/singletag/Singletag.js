@@ -11,6 +11,7 @@ const SingleTag = () => {
   const id = useSelector((state) => state.flags.currentId);
 
   const tag = useSelector((state) => state.tag);
+  const associatedMats = tag.texts;
 
   // const handleDelete = () => {
   //   dispatch(deleteMat(id)).then(() => {
@@ -31,9 +32,27 @@ const SingleTag = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-        {tag && (
-          <div>
-            <p>{tag.name}</p>
+        {tag && associatedMats && (
+          <div className="single-mattag">
+            <div className="single-content">
+              <p>{tag.name}</p>
+            </div>
+            <div className="single-rest">
+              <div>
+                <div className="single-labels">
+                  <small>Associated Mats</small>
+                  <div className="single-list">
+                    {associatedMats.map((mat, index) => (
+                      <p key={index}>{mat.content}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="single-actions">
+                <button className="single-edit">Edit Tag</button>
+                <button className="single-delete">Delete Tag</button>
+              </div>
+            </div>
           </div>
         )}
       </motion.div>
