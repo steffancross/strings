@@ -1,23 +1,23 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { fetchTag } from "./singletagSlice";
+import { fetchTag, deleteTag } from "./singletagSlice";
 import { motion } from "framer-motion";
+import { setAllFalse } from "../utils/flagSlice";
 
 const SingleTag = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const id = useSelector((state) => state.flags.currentId);
 
   const tag = useSelector((state) => state.tag);
   const associatedMats = tag.texts;
 
-  // const handleDelete = () => {
-  //   dispatch(deleteMat(id)).then(() => {
-  //     navigate("/");
-  //   });
-  // };
+  const handleDelete = () => {
+    dispatch(deleteTag(id)).then(() => {
+      dispatch(setAllFalse());
+      location.reload();
+    });
+  };
 
   useEffect(() => {
     dispatch(fetchTag(id));
@@ -50,7 +50,9 @@ const SingleTag = () => {
               </div>
               <div className="single-actions">
                 <button className="single-edit">Edit Tag</button>
-                <button className="single-delete">Delete Tag</button>
+                <button className="single-delete" onClick={handleDelete}>
+                  Delete Tag
+                </button>
               </div>
             </div>
           </div>

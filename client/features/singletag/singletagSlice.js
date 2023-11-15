@@ -7,6 +7,12 @@ export const fetchTag = createAsyncThunk("tag/fetch", async (id) => {
   return data;
 });
 
+// delete tag
+export const deleteTag = createAsyncThunk("tag/delete", async (id) => {
+  const { data } = await axios.delete(`/api/tags/${id}`);
+  return data;
+});
+
 const singletagSlice = createSlice({
   name: "tag",
   initialState: [],
