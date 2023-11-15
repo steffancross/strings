@@ -6,6 +6,8 @@ import { setAllFalse } from "../utils/flagSlice";
 
 const EditMat = ({ handleEdit }) => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.me);
+  const userId = user.id;
   const mat = useSelector((state) => state.mat);
   const [formData, setFormData] = useState({
     content: "",
@@ -44,6 +46,7 @@ const EditMat = ({ handleEdit }) => {
       ...(description !== "" && { description }),
       tags: tagsArray[0] !== "" ? tagsArray : [],
       id: mat.id,
+      userId: userId,
     };
 
     await dispatch(editMat(payload));

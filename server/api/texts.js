@@ -134,7 +134,7 @@ router.delete("/:id", async (req, res, next) => {
 // edit a text
 router.put("/:id", async (req, res, next) => {
   try {
-    const { content, link, description, tags } = req.body;
+    const { content, link, description, tags, userId } = req.body;
 
     const textToEdit = await Text.findByPk(req.params.id);
 
@@ -155,7 +155,7 @@ router.put("/:id", async (req, res, next) => {
     if (tags && tags.length > 0) {
       for (const tag of tags) {
         const [newTag, created] = await Tag.findOrCreate({
-          where: { name: tag },
+          where: { name: tag, userId },
         });
 
         await textToEdit.addTags(newTag);
