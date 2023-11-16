@@ -6,6 +6,7 @@ import NotLoggedIn from "../features/notloggedin/NotLoggedIn";
 import Main from "../features/main/Main";
 import Guide from "../features/guide/Guide";
 import Tags from "../features/tags/Tags";
+import About from "../features/about/About";
 import { me } from "./store";
 
 const AppRoutes = () => {
@@ -28,6 +29,7 @@ const AppRoutes = () => {
           <Route to="/" element={<Main />} />
           <Route path="/tags" element={<Tags />} />
           <Route path="/guide" element={<Guide />} />
+          <Route path="/about" element={<About />} />
           <Route path="/*" element={<Main />} />
         </Routes>
       ) : (
