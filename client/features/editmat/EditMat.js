@@ -60,7 +60,6 @@ const EditMat = ({ handleEdit }) => {
     });
 
     handleEdit();
-    // dispatch(setAllFalse());
   };
 
   useEffect(() => {

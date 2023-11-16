@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTag, deleteTag } from "./singletagSlice";
 import { motion } from "framer-motion";
 import { setAllFalse } from "../utils/flagSlice";
+import EditTag from "../edittag/EditTag";
 
 const SingleTag = () => {
   const dispatch = useDispatch();
   const id = useSelector((state) => state.flags.currentId);
-
   const tag = useSelector((state) => state.tag);
   const associatedMats = tag.texts;
+  const [editMode, setEditMode] = useState(false);
+
+  const handleEdit = () => {
+    setEditMode(!editMode);
+  };
 
   const handleDelete = () => {
     dispatch(deleteTag(id)).then(() => {
@@ -38,22 +43,30 @@ const SingleTag = () => {
               <p>{tag.name}</p>
             </div>
             <div className="single-rest">
-              <div>
-                <div className="single-labels">
-                  <small>Associated Mats</small>
-                  <div className="single-list">
-                    {associatedMats.map((mat, index) => (
-                      <p key={index}>{mat.content}</p>
-                    ))}
+              {editMode ? (
+                <EditTag handleEdit={handleEdit} />
+              ) : (
+                <>
+                  <div>
+                    <div className="single-labels">
+                      <small>Associated Mats</small>
+                      <div className="single-list">
+                        {associatedMats.map((mat, index) => (
+                          <p key={index}>{mat.content}</p>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="single-actions">
-                <button className="single-edit">Edit Tag</button>
-                <button className="single-delete" onClick={handleDelete}>
-                  Delete Tag
-                </button>
-              </div>
+                  <div className="single-actions">
+                    <button className="single-edit" onClick={handleEdit}>
+                      Edit Tag
+                    </button>
+                    <button className="single-delete" onClick={handleDelete}>
+                      Delete Tag
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         )}
