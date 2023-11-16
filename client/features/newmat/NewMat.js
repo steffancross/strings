@@ -71,19 +71,27 @@ const NewMat = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <h2>Add New Mat</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Content:
+        <div className="single-labels">
+          <small>Content:</small>
           <textarea
             name="content"
             value={formData.content}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           />
-        </label>
-        <label>
-          Link:
+        </div>
+        <div className="single-labels">
+          <small>Description:</small>
+          <textarea
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="single-labels">
+          <small>Link:</small>
           <input
             type="text"
             name="link"
@@ -91,18 +99,9 @@ const NewMat = () => {
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           />
-        </label>
-        <label>
-          Description:
-          <textarea
-            type="text"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Tags:
+        </div>
+        <div className="single-labels">
+          <small>Tags:</small>
           <input
             type="text"
             name="tags"
@@ -110,16 +109,18 @@ const NewMat = () => {
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           />
-        </label>
-        <button className="single-edit" type="submit">
-          Add Text
-        </button>
-        <button
-          className="single-delete"
-          onClick={() => dispatch(setAllFalse())}
-        >
-          Discard
-        </button>
+        </div>
+        <div className="new-buttons">
+          <button className="single-edit" type="submit">
+            Add Mat
+          </button>
+          <button
+            className="single-delete"
+            onClick={() => dispatch(setAllFalse())}
+          >
+            Discard
+          </button>
+        </div>
       </form>
     </motion.div>
   );
