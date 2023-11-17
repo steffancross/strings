@@ -5,7 +5,12 @@
   --grid-cols: 6;
 }
 
-body,
+body {
+  font-family: garamond;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
 input,
 textarea,
 button {
@@ -30,7 +35,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 
 a {
@@ -313,4 +318,45 @@ form div {
 
 .about p {
   padding: 0 20px 0 20px;
+}
+
+/* GUIDE */
+.guide {
+  display: flex;
+  flex-direction: column;
+  /* overflow-y: visible !important; */
+}
+
+.guide p {
+  margin-top: 0;
+}
+
+.guide-title {
+  font-size: 1.5rem;
+}
+
+.indent-title {
+  font-size: 1.2rem;
+  margin-left: 20px;
+}
+
+.guide-command {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 40px;
+}
+
+em {
+  font-weight: bold;
+}
+
+.guide-example {
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+  font-size: 0.9rem;
+}
+
+.guide-example small {
+  color: var(--tertiary-color);
 }
