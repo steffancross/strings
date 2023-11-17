@@ -107,7 +107,7 @@ const SearchBar = () => {
   return (
     <>
       <div className="top-bar">
-        <div></div>
+        <div>AD.HOC</div>
         <div className="search-bar">
           <input
             ref={inputRef}

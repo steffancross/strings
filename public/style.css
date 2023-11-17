@@ -101,7 +101,7 @@ form div {
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -149,6 +149,7 @@ form div {
 #menu {
   display: flex;
   flex-direction: column;
+  background-color: var(--secondary-color);
 }
 
 #menu a {
