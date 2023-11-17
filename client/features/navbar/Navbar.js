@@ -30,6 +30,7 @@ const Navbar = () => {
             <div id="menu">
               <Link to="/">Home</Link>
               <Link to="/guide">Guide</Link>
+              <Link to="/about">About</Link>
               <div onClick={logoutAndRedirectHome}>Logout</div>
             </div>
           ) : (

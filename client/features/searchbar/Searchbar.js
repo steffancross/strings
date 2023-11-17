@@ -64,6 +64,9 @@ const SearchBar = () => {
       case "guide":
         navigate("/guide");
         break;
+      case "about":
+        navigate("/about");
+        break;
       default:
         setCommandNotRecog(true);
         setTimeout(() => {
