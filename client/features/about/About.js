@@ -14,7 +14,7 @@ const About = () => {
         <p>
           Mats are the core of this application. Whenever you store a word or a
           phrase, it becomes a mat. Mats are categorized with tags and can have
-          one, or many, or none(although that is not recommended). These tags
+          one, or many, or none (although that is not recommended). These tags
           are the main way mats are thought about and retrieved.
         </p>
         <p>
