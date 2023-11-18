@@ -324,7 +324,10 @@ form div {
 .guide {
   display: flex;
   flex-direction: column;
-  /* overflow-y: visible !important; */
+}
+
+.guide h1 {
+  margin-top: 0;
 }
 
 .guide p {

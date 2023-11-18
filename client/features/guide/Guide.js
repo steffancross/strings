@@ -7,12 +7,23 @@ const Guide = () => {
         <h1 className="guide-title">Search Bar</h1>
         <p>
           The search bar at the top of the window is the main way to navigate
-          the site. Besides when a popup is open, pressing <em>"/"</em> will
+          the site. Besides when a popup is open, pressing <em>'/'</em> will
           focus the search bar and allow you to type commands.
         </p>
-        <h1 className="guide-title">Commands</h1>
-        <p>There are two types of commands: navigation and mat-related.</p>
-        <h2 className="indent-title">Navigation</h2>
+        <h1 className="guide-title">Graph</h1>
+        <p>
+          The graph is a visual representation of all the information you've
+          stored here. Each node on the graph is a tag and tags with more mats
+          associated with them will be larger in the graph. Nodes that are
+          connected show tags that have one or more bridging mats. For example,
+          if you had a mat that had the 'hope' and 'cool' tags associated with
+          it, those two nodes will be connected on the graph.
+        </p>
+        <h1 className="guide-title">Navigation</h1>
+        <p>
+          With navigation commands, just type location you want into the search
+          bar at the top and you'll be taken to the corresponding page.
+        </p>
         <div className="guide-command">
           <em>home</em>
           <p>&nbsp;goes to home</p>
@@ -29,18 +40,18 @@ const Guide = () => {
           <em>about</em>
           <p>&nbsp;goes to about</p>
         </div>
-        <h2 className="indent-title">Mat</h2>
+        <h1 className="guide-title">Mat</h1>
+        <p>
+          With the 'search' and 'filter' commands, there is a bit of syntax. The
+          base command, followed by a <em>':'</em> and then your search
+          criteria.
+        </p>
         <div className="guide-command">
           <em>new</em>
           <p>&nbsp;opens the menu to create a new mat</p>
         </div>
-        <p>
-          With these following commands, there is a bit of syntax to take into
-          account. After typing in the base command, add <em>":"</em> after and
-          then your search criteria.
-        </p>
         <div className="guide-command">
-          <em>search:</em>
+          <em>search</em>
           <p>
             &nbsp;this will search all your mats and return the ones that
             contain your search query at any location
@@ -55,7 +66,7 @@ const Guide = () => {
           </p>
         </div>
         <div className="guide-command">
-          <em>filter:</em>
+          <em>filter</em>
           <p>
             &nbsp;this functions like search but with tags and will return all
             mats associated with the input tag
@@ -68,8 +79,8 @@ const Guide = () => {
         </div>
         <h1 className="guide-title">Tags</h1>
         <p>
-          When adding or editing a mat in the 'tags' input field, there is a
-          syntax to know. If adding or assigning more than one tag, separate
+          When adding or editing a mat in the 'tags' input field, once again,
+          there is syntax. If adding or assigning more than one tag, separate
           them by commas.
         </p>
         <div className="guide-example">
