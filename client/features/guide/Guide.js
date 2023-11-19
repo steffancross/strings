@@ -1,9 +1,16 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Guide = () => {
   return (
     <>
-      <div className="guide">
+      <motion.div
+        className="guide"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1.0, delay: 0.5 }}
+      >
         <h1 className="guide-title">Search Bar</h1>
         <p>
           The search bar at the top of the window is the main way to navigate
@@ -91,7 +98,7 @@ const Guide = () => {
           <em>hope cool</em>
           <p>will associate the tag 'hope cool' to the mat</p>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

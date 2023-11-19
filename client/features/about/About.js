@@ -1,12 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const About = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="about">
+      <motion.div
+        className="about"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1.0, delay: 0.5 }}
+      >
         <p>
           Ad.hoc is a hybrid interface application, used through a mixture of
           mouse and typed commands to store words and phrases of importance.
@@ -31,7 +38,7 @@ const About = () => {
           <a onClick={() => navigate("/guide")}>guide</a>
           &nbsp;first to learn about how to use the site.
         </p>
-      </div>
+      </motion.div>
     </>
   );
 };
