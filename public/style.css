@@ -280,7 +280,32 @@ form div {
 
 .single-list p {
   margin-top: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
+}
+
+/* SINGLE TAG */
+.tag-labels {
+  height: 250px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-labels small,
+.tag-labels a {
+  font-size: 0.8rem;
+  color: var(--tertiary-color);
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.tag-list {
+  overflow-y: auto;
+}
+
+.tag-list p {
+  margin-top: 0px;
+  margin-bottom: 5px;
 }
 
 /* SINGLE ACTIONS */

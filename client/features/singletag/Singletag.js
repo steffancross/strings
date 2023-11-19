@@ -48,9 +48,9 @@ const SingleTag = () => {
               ) : (
                 <>
                   <div>
-                    <div className="single-labels">
+                    <div className="tag-labels">
                       <small>Associated Mats</small>
-                      <div className="single-list">
+                      <div className="tag-list">
                         {associatedMats.map((mat, index) => (
                           <p key={index}>-{mat.content}</p>
                         ))}
