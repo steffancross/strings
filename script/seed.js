@@ -17,15 +17,19 @@ async function seed() {
   console.log("db synced!");
 
   await User.bulkCreate(userData);
-  await Tag.bulkCreate(tagData);
 
   for (const data of textData) {
-    const { tags } = data;
+    const { tags, userId } = data;
 
     const text = await Text.create(data);
-    const newTag = await Tag.findAll({ where: { name: tags } });
 
-    await text.setTags(newTag);
+    for (const tag of tags) {
+      const [newTag, created] = await Tag.findOrCreate({
+        where: { name: tag, userId },
+      });
+
+      await text.addTags(newTag);
+    }
   }
 
   console.log(`seeded successfully`);
