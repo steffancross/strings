@@ -3,6 +3,9 @@ import * as d3 from "d3";
 
 const Graph = () => {
   const svgRef = useRef(null);
+  const width = window.innerWidth;
+  const height = window.innerWidth;
+
   const nodes = [
     { id: "tim" },
     { id: "jon" },
@@ -31,7 +34,7 @@ const Graph = () => {
           .id((d) => d.id)
           .distance(100)
       )
-      .force("charge", d3.forceManyBody().strength(-200))
+      .force("charge", d3.forceManyBody().strength(-20))
       .force(
         "center",
         d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)
@@ -39,6 +42,7 @@ const Graph = () => {
 
     // Draw links
     const link = svg
+      .attr("stroke", "#000")
       .selectAll(".link")
       .data(links)
       .enter()
@@ -52,7 +56,8 @@ const Graph = () => {
       .enter()
       .append("circle")
       .attr("class", "node")
-      .attr("r", 8);
+      .attr("r", 12)
+      .attr("fill", "#fff");
 
     // Update node and link positions on each tick of the simulation
     simulation.on("tick", () => {
@@ -73,7 +78,7 @@ const Graph = () => {
 
   return (
     <>
-      <svg ref={svgRef}></svg>;
+      <svg ref={svgRef} width={width} height={height}></svg>
     </>
   );
 };
