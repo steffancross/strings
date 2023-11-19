@@ -56,7 +56,7 @@ const SingleMat = () => {
                       <small>Tags</small>
                       <div className="single-list">
                         {tags.map((tag, index) => (
-                          <p key={index}>{tag.name}</p>
+                          <p key={index}>-{tag.name}</p>
                         ))}
                       </div>
                     </div>
