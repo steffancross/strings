@@ -16,8 +16,10 @@ const Graph = () => {
   const height = window.innerHeight;
 
   useEffect(() => {
-    dispatch(fetchTexts({ userId }));
-  }, [dispatch, userId]);
+    if (dataToParse.length === 0) {
+      dispatch(fetchTexts({ userId }));
+    }
+  }, [dispatch, userId, dataToParse]);
 
   useEffect(() => {
     const { nodes, links } = graphParser(dataToParse);
