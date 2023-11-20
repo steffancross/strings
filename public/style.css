@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #000;
-  --secondary-color: #fff;
+  --primary-color: rgb(235, 233, 132);
+  --secondary-color: #86a4db;
   --tertiary-color: #b8b8b8;
   --grid-cols: 5;
 }
@@ -389,4 +389,18 @@ em {
 
 .guide-example small {
   color: var(--tertiary-color);
+}
+
+/* GRAPH */
+.node circle {
+  stroke: var(--primary-color);
+  fill: var(--secondary-color);
+}
+
+.text {
+  fill: var(--primary-color);
+}
+
+.link {
+  stroke: var(--primary-color);
 }

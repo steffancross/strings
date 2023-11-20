@@ -50,7 +50,6 @@ const Graph = () => {
 
     // Draw links
     const link = svg
-      .attr("stroke", "#000")
       .selectAll(".link")
       .data(links)
       .enter()
@@ -72,19 +71,14 @@ const Graph = () => {
           .on("end", dragended)
       );
 
-    node
-      .append("circle")
-      .attr("r", 20)
-      .attr("fill", "#fff")
-      .attr("color", "#000");
+    node.append("circle").attr("r", 25);
 
     node
       .append("text")
       .text(function (d) {
         return d.id;
       })
-      .style("font-size", "12px")
-      .style("color", "#000")
+      .style("font-size", "14px")
       .attr("text-anchor", "middle")
       .attr("y", 2)
       .attr("class", "text");
