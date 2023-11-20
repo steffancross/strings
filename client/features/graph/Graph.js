@@ -1,26 +1,34 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as d3 from "d3";
+import { fetchTexts } from "../main/mainSlice";
+import { graphParser } from "../utils/HelperFunctions";
 
 const Graph = () => {
   const svgRef = useRef(null);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.me);
+  const userId = user.id;
+  const dataToParse = useSelector((state) => state.mats);
+  const [nodes, setNodes] = useState([]);
+  const [links, setLinks] = useState([]);
   const width = window.innerWidth;
   const height = window.innerHeight;
 
-  const nodes = [
-    { id: "tim" },
-    { id: "jon" },
-    { id: "bil" },
-    { id: "bib" },
-    { id: "giv" },
-  ];
-
-  const links = [
-    { source: "tim", target: "jon" },
-    { source: "jon", target: "bil" },
-    { source: "bib", target: "giv" },
-  ];
+  useEffect(() => {
+    dispatch(fetchTexts({ userId }));
+  }, [dispatch, userId]);
 
   useEffect(() => {
+    const { nodes, links } = graphParser(dataToParse);
+    setNodes(nodes);
+    setLinks(links);
+  }, [dataToParse]);
+
+  useEffect(() => {
+    // only simulate when that data is here
+    if (nodes.length === 0 || links.length === 0) return;
+
     // Create the SVG container
     const svg = d3.select(svgRef.current);
 
@@ -66,7 +74,7 @@ const Graph = () => {
 
     node
       .append("circle")
-      .attr("r", 12)
+      .attr("r", 20)
       .attr("fill", "#fff")
       .attr("color", "#000");
 
@@ -78,7 +86,8 @@ const Graph = () => {
       .style("font-size", "12px")
       .style("color", "#000")
       .attr("text-anchor", "middle")
-      .attr("y", 2);
+      .attr("y", 2)
+      .attr("class", "text");
 
     // Update node and link positions on each tick of the simulation
     simulation.on("tick", () => {
