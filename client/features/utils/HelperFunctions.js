@@ -1,18 +1,27 @@
 export function graphParser(data) {
   const nodes = [];
   const links = [];
+  const tagCount = {};
 
   // collect nodes
   for (const dat of data) {
     const tags = dat.tags;
     for (const tag of tags) {
       const content = tag.name;
-      if (!nodes.includes(content)) {
-        nodes.push({ id: content });
+
+      tagCount[content] = (tagCount[content] || 0) + 1;
+
+      const existingNodeIndex = nodes.findIndex((node) => node.id === content);
+
+      if (existingNodeIndex === -1) {
+        // node doesn't exist yet
+        nodes.push({ id: content, count: tagCount[content] });
+      } else {
+        nodes[existingNodeIndex].count = tagCount[content];
       }
     }
   }
-
+  console.log("===", nodes);
   // collect links
   const linkSet = new Set();
   for (const dat of data) {
