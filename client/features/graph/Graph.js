@@ -4,7 +4,7 @@ import * as d3 from "d3";
 const Graph = () => {
   const svgRef = useRef(null);
   const width = window.innerWidth;
-  const height = window.innerWidth;
+  const height = window.innerHeight;
 
   const nodes = [
     { id: "tim" },
@@ -34,7 +34,7 @@ const Graph = () => {
           .id((d) => d.id)
           .distance(100)
       )
-      .force("charge", d3.forceManyBody().strength(-20))
+      .force("charge", d3.forceManyBody().strength(-60))
       .force(
         "center",
         d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)
@@ -54,18 +54,31 @@ const Graph = () => {
       .selectAll(".node")
       .data(nodes)
       .enter()
-      .append("circle")
+      .append("g")
       .attr("class", "node")
-      .attr("r", 12)
-      .attr("fill", "#fff");
+      .call(
+        d3
+          .drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended)
+      );
 
-    node.call(
-      d3
-        .drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended)
-    );
+    node
+      .append("circle")
+      .attr("r", 12)
+      .attr("fill", "#fff")
+      .attr("color", "#000");
+
+    node
+      .append("text")
+      .text(function (d) {
+        return d.id;
+      })
+      .style("font-size", "12px")
+      .style("color", "#000")
+      .attr("text-anchor", "middle")
+      .attr("y", 2);
 
     // Update node and link positions on each tick of the simulation
     simulation.on("tick", () => {
@@ -75,7 +88,7 @@ const Graph = () => {
         .attr("x2", (d) => d.target.x)
         .attr("y2", (d) => d.target.y);
 
-      node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+      node.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
 
     function dragstarted(event) {
