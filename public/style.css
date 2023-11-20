@@ -1,6 +1,6 @@
 :root {
-  --primary-color: rgb(235, 233, 132);
-  --secondary-color: #86a4db;
+  --primary-color: #000;
+  --secondary-color: #fff;
   --tertiary-color: #b8b8b8;
   --grid-cols: 5;
 }
@@ -155,7 +155,7 @@ form div {
   display: flex;
   flex-direction: column;
   background-color: var(--secondary-color);
-  padding: 10px;
+  padding: 0px 10px 10px 10px;
 }
 
 #menu a {

@@ -31,6 +31,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
               <Link to="/guide">Guide</Link>
               <Link to="/about">About</Link>
+              <Link to="/graph">Graph</Link>
               <div onClick={logoutAndRedirectHome}>Logout</div>
             </div>
           ) : (

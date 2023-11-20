@@ -20,11 +20,10 @@ const Guide = () => {
         <h1 className="guide-title">Graph</h1>
         <p>
           The graph is a visual representation of all the information you've
-          stored here. Each node on the graph is a tag and tags with more mats
-          associated with them will be larger in the graph. Nodes that are
-          connected show tags that have one or more bridging mats. For example,
-          if you had a mat that had the 'hope' and 'cool' tags associated with
-          it, those two nodes will be connected on the graph.
+          stored here. Each node on the graph is a tag. Nodes that are connected
+          show tags that have one or more bridging mats. For example, if you had
+          a mat that had the 'hope' and 'cool' tags associated with it, those
+          two nodes will be connected on the graph.
         </p>
         <h1 className="guide-title">Navigation</h1>
         <p>
@@ -34,6 +33,10 @@ const Guide = () => {
         <div className="guide-command">
           <em>home</em>
           <p>&nbsp;goes to home</p>
+        </div>
+        <div className="guide-command">
+          <em>guide</em>
+          <p>&nbsp;goes to the guide</p>
         </div>
         <div className="guide-command">
           <em>graph</em>
