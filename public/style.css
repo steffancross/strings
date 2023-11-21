@@ -35,7 +35,14 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  /* overflow-y: hidden; */
+}
+
+#main-holder {
+  width: 100%;
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  overflow-y: auto;
 }
 
 a {
@@ -102,13 +109,16 @@ form div {
 
 /* SEARCHBAR */
 .top-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--secondary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
-  margin-bottom: 20px;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 20px;
 }
 
 .search-bar input {
@@ -151,6 +161,10 @@ form div {
 }
 
 /* NAVBAR */
+.menu-item {
+  margin-right: 20px;
+}
+
 #menu {
   display: flex;
   flex-direction: column;

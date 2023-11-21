@@ -13,7 +13,7 @@ const Graph = () => {
   const [nodes, setNodes] = useState([]);
   const [links, setLinks] = useState([]);
   const width = window.innerWidth;
-  const height = window.innerHeight;
+  const height = window.innerHeight - 80;
 
   useEffect(() => {
     if (dataToParse.length === 0) {

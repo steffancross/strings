@@ -21,7 +21,7 @@ export function graphParser(data) {
       }
     }
   }
-  console.log("===", nodes);
+
   // collect links
   const linkSet = new Set();
   for (const dat of data) {
