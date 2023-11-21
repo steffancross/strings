@@ -73,7 +73,7 @@ const Graph = () => {
           .on("end", dragended)
       );
 
-    node.append("circle").attr("r", (d) => 20 + 5 * d.count);
+    node.append("circle").attr("r", (d) => 25 + 2 * d.count);
 
     node
       .append("text")
