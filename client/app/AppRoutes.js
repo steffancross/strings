@@ -26,14 +26,16 @@ const AppRoutes = () => {
       {isLoading ? (
         <div></div>
       ) : isLoggedIn ? (
-        <Routes>
-          <Route to="/" element={<Main />} />
-          <Route path="/tags" element={<Tags />} />
-          <Route path="/graph" element={<Graph />} />
-          <Route path="/guide" element={<Guide />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/*" element={<Main />} />
-        </Routes>
+        <div id="main-holder">
+          <Routes>
+            <Route to="/" element={<Main />} />
+            <Route path="/tags" element={<Tags />} />
+            <Route path="/graph" element={<Graph />} />
+            <Route path="/guide" element={<Guide />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/*" element={<Main />} />
+          </Routes>
+        </div>
       ) : (
         <Routes>
           <Route path="/*" element={<NotLoggedIn />} />
