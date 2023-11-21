@@ -42,9 +42,9 @@ const Graph = () => {
         d3
           .forceLink(links)
           .id((d) => d.id)
-          .distance(100)
+          .distance(110)
       )
-      .force("charge", d3.forceManyBody().strength(-60))
+      .force("charge", d3.forceManyBody().strength(-70))
       .force(
         "center",
         d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)
