@@ -297,6 +297,10 @@ form div {
   margin-bottom: 5px;
 }
 
+.single-list p:hover {
+  text-decoration: underline;
+}
+
 /* SINGLE TAG */
 .tag-labels {
   height: 250px;
@@ -320,6 +324,10 @@ form div {
 .tag-list p {
   margin-top: 0px;
   margin-bottom: 5px;
+}
+
+.tag-list p:hover {
+  text-decoration: underline;
 }
 
 /* SINGLE ACTIONS */

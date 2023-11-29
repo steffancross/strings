@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMat, deleteMat } from "./singlematSlice";
 import EditMat from "../editmat/EditMat";
-import { setAllFalse } from "../utils/flagSlice";
+import {
+  setAllFalse,
+  setCurrentId,
+  setShowSingleMat,
+  setShowSingleTag,
+} from "../utils/flagSlice";
 import { motion } from "framer-motion";
 
 const SingleMat = () => {
@@ -22,6 +27,12 @@ const SingleMat = () => {
       dispatch(setAllFalse());
       location.reload();
     });
+  };
+
+  const handleTagNavigate = (data) => {
+    dispatch(setCurrentId(data));
+    dispatch(setShowSingleMat(false));
+    dispatch(setShowSingleTag(true));
   };
 
   useEffect(() => {
@@ -56,7 +67,12 @@ const SingleMat = () => {
                       <small>Tags</small>
                       <div className="single-list">
                         {tags.map((tag, index) => (
-                          <p key={index}>-{tag.name}</p>
+                          <p
+                            key={index}
+                            onClick={() => handleTagNavigate(tag.id)}
+                          >
+                            -{tag.name}
+                          </p>
                         ))}
                       </div>
                     </div>
