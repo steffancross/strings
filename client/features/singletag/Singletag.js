@@ -3,7 +3,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTag, deleteTag } from "./singletagSlice";
 import { motion } from "framer-motion";
-import { setAllFalse } from "../utils/flagSlice";
+import {
+  setAllFalse,
+  setCurrentId,
+  setShowSingleMat,
+  setShowSingleTag,
+} from "../utils/flagSlice";
 import EditTag from "../edittag/EditTag";
 
 const SingleTag = () => {
@@ -22,6 +27,12 @@ const SingleTag = () => {
       dispatch(setAllFalse());
       location.reload();
     });
+  };
+
+  const handleMatNavigate = (data) => {
+    dispatch(setCurrentId(data));
+    dispatch(setShowSingleTag(false));
+    dispatch(setShowSingleMat(true));
   };
 
   useEffect(() => {
@@ -52,7 +63,12 @@ const SingleTag = () => {
                       <small>Associated Mats</small>
                       <div className="tag-list">
                         {associatedMats.map((mat, index) => (
-                          <p key={index}>-{mat.content}</p>
+                          <p
+                            key={index}
+                            onClick={() => handleMatNavigate(mat.id)}
+                          >
+                            -{mat.content}
+                          </p>
                         ))}
                       </div>
                     </div>

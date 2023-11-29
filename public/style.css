@@ -326,6 +326,10 @@ form div {
   margin-bottom: 5px;
 }
 
+.tag-list p:hover {
+  text-decoration: underline;
+}
+
 /* SINGLE ACTIONS */
 .single-actions {
   display: flex;

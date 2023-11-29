@@ -29,7 +29,7 @@ router.get("/:id", async (req, res, next) => {
       attributes: ["name", "id"],
       include: {
         model: Text,
-        attributes: ["content"],
+        attributes: ["content", "id"],
         through: { attributes: [] },
       },
     });
