@@ -297,6 +297,10 @@ form div {
   margin-bottom: 5px;
 }
 
+.single-list p:hover {
+  text-decoration: underline;
+}
+
 /* SINGLE TAG */
 .tag-labels {
   height: 250px;
