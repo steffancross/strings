@@ -17,3 +17,18 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+
+// set first visit to false
+router.put("/:id", async (req, res, next) => {
+  try {
+    const userToEdit = await User.findByPk(req.params.id);
+
+    userToEdit.firstvisit = false;
+
+    await userToEdit.save();
+
+    res.send(userToEdit);
+  } catch (err) {
+    next(err);
+  }
+});

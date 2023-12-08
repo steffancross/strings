@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import AuthForm from "../features/auth/AuthForm";
 import NotLoggedIn from "../features/notloggedin/NotLoggedIn";
 import Main from "../features/main/Main";
@@ -8,18 +8,27 @@ import Guide from "../features/guide/Guide";
 import Tags from "../features/tags/Tags";
 import About from "../features/about/About";
 import Graph from "../features/graph/Graph";
+import { setFalseFirstVisit } from "../features/utils/userSlice";
 import { me } from "./store";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const firstVisit = useSelector((state) => state.auth.me.firstvisit);
+  const userId = useSelector((state) => state.auth.me.id);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     dispatch(me()).then(() => {
       setIsLoading(false);
     });
-  }, [dispatch]);
+
+    if (firstVisit && userId) {
+      navigate("/about");
+      dispatch(setFalseFirstVisit(userId));
+    }
+  }, [dispatch, firstVisit, userId]);
 
   return (
     <>
