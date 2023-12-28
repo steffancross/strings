@@ -26,6 +26,22 @@ const User = db.define("user", {
     type: Sequelize.BOOLEAN,
     defaultValue: true,
   },
+  primaryColor: {
+    type: Sequelize.STRING,
+    defaultValue: null,
+  },
+  secondaryColor: {
+    type: Sequelize.STRING,
+    defaultValue: null,
+  },
+  tertiaryColor: {
+    type: Sequelize.STRING,
+    defaultValue: null,
+  },
+  columns: {
+    type: Sequelize.INTEGER,
+    defaultValue: null,
+  },
 });
 
 module.exports = User;
