@@ -1,6 +1,10 @@
-import React from "react";
+import { use } from "chai";
+import React, { useState } from "react";
+import { SketchPicker } from "react-color";
 
 const Styling = () => {
+  const [color, setColor] = useState("#ff0000");
+
   const handleColorChange = () => {
     document.documentElement.style.setProperty("--primary-color", "red");
   };
@@ -8,8 +12,7 @@ const Styling = () => {
   return (
     <>
       <div>
-        <h1>primary color</h1>
-        <button onClick={() => handleColorChange()}>X</button>
+        <SketchPicker color={color} onChange={(color) => setColor(color.hex)} />
       </div>
     </>
   );
