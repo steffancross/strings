@@ -24,3 +24,5 @@ starts your server (for testing your backend)
 # npm run start:dev
 starts your server and builds client-side files. go to localhost:8080
 ```
+
+Other commands can be found in the package.json but this should be enough to get you up and running!
