@@ -6,13 +6,17 @@ const Styling = () => {
   const [color, setColor] = useState("#ff0000");
 
   const handleColorChange = () => {
-    document.documentElement.style.setProperty("--primary-color", "red");
+    document.documentElement.style.setProperty("--primary-color", color);
   };
 
   return (
     <>
       <div>
-        <SketchPicker color={color} onChange={(color) => setColor(color.hex)} />
+        <SketchPicker
+          color={color}
+          onChange={(color) => setColor(color.hex)}
+          onChangeComplete={() => handleColorChange()}
+        />
       </div>
     </>
   );
