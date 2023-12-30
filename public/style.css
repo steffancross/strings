@@ -428,6 +428,15 @@ em {
 }
 
 /* STYLING */
+/* to get rid of hsb and hsl. will only show hex now. */
 .chrome-picker > div:last-child > div:last-child > div:last-child {
   display: none;
+}
+
+.selected {
+  color: var(--primary-color);
+}
+
+.unselected {
+  color: var(--tertiary-color);
 }
