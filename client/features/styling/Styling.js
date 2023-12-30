@@ -1,6 +1,5 @@
-import { use } from "chai";
 import React, { useState } from "react";
-import { SketchPicker } from "react-color";
+import { ChromePicker } from "react-color";
 
 const Styling = () => {
   const [color, setColor] = useState("#ff0000");
@@ -26,10 +25,14 @@ const Styling = () => {
           <button onClick={() => setNum(2)}>Secondary Color</button>
           <button onClick={() => setNum(3)}>Tertiary Color</button>
         </div>
-        <SketchPicker
+        <ChromePicker
+          disableAlpha={true}
           color={color}
           onChange={(color) => handleColorChange(num, color)}
         />
+      </div>
+      <div>
+        <p>Columns</p>
       </div>
     </>
   );

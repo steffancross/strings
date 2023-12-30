@@ -426,3 +426,8 @@ em {
 .link {
   stroke: var(--primary-color);
 }
+
+/* STYLING */
+.chrome-picker > div:last-child > div:last-child > div:last-child {
+  display: none;
+}
