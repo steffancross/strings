@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { ChromePicker } from "react-color";
+import { useSelector, useDispatch } from "react-redux";
+import { editStyles } from "./stylingSlice";
 
 const Styling = () => {
+  const dispatch = useDispatch();
   const columnList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [color, setColor] = useState("#ff0000");
   const [num, setNum] = useState(1);
+  const userId = useSelector((state) => state.auth.me.id);
+  const primaryColor = useSelector((state) => state.styles.primaryColor);
+  const secondaryColor = useSelector((state) => state.styles.secondaryColor);
+  const tertiaryColor = useSelector((state) => state.styles.tertiaryColor);
+  const columns = useSelector((state) => state.styles.columns);
 
   const handleColorChange = (num, colorToSet) => {
     setColor(colorToSet.hex);
@@ -16,6 +24,18 @@ const Styling = () => {
     } else if (num === 3) {
       document.documentElement.style.setProperty("--tertiary-color", color);
     }
+  };
+
+  const updateDbWithStyles = () => {
+    const styleUpdate = {
+      primaryColor: num === 1 ? color : primaryColor,
+      secondaryColor: num === 2 ? color : secondaryColor,
+      tertiaryColor: num === 3 ? color : tertiaryColor,
+      columns,
+      userId,
+    };
+
+    dispatch(editStyles(styleUpdate));
   };
 
   return (
@@ -59,6 +79,7 @@ const Styling = () => {
               disableAlpha={true}
               color={color}
               onChange={(color) => handleColorChange(num, color)}
+              onChangeComplete={() => updateDbWithStyles()}
             />
           )}
         </div>

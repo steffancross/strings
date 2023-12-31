@@ -14,7 +14,13 @@ export const fetchStyles = createAsyncThunk(
 export const editStyles = createAsyncThunk(
   "users/put",
   async ({ primaryColor, secondaryColor, tertiaryColor, columns, userId }) => {
-    const { data } = await axios.put(`/api/users/styles`);
+    const { data } = await axios.put(`/api/users/styles`, {
+      primaryColor,
+      secondaryColor,
+      tertiaryColor,
+      columns,
+      userId,
+    });
     return data;
   }
 );

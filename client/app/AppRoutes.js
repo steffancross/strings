@@ -26,7 +26,9 @@ const AppRoutes = () => {
       setIsLoading(false);
     });
 
-    dispatch(fetchStyles({ userId }));
+    if (userId) {
+      dispatch(fetchStyles({ userId }));
+    }
 
     if (firstVisit && userId) {
       navigate("/about");
