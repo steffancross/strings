@@ -11,6 +11,7 @@ import {
   setShouldFetch,
   setShowNewMat,
   setShowOverlay,
+  setShowStyling,
 } from "../utils/flagSlice";
 
 const SearchBar = () => {
@@ -49,6 +50,10 @@ const SearchBar = () => {
       case "new":
         dispatch(setShowOverlay(true));
         dispatch(setShowNewMat(true));
+        break;
+      case "style":
+        dispatch(setShowOverlay(true));
+        dispatch(setShowStyling(true));
         break;
       case "home":
         if (!atHome) {

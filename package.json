@@ -29,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "pg": "^8.8.0",
+    "react-color": "^2.19.3",
     "reactjs-popup": "^2.0.6",
     "sass": "^1.69.5",
     "sequelize": "^6.25.3"
