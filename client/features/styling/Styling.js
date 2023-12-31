@@ -3,6 +3,7 @@ import { ChromePicker } from "react-color";
 import { useSelector, useDispatch } from "react-redux";
 import { editStyles, fetchStyles } from "./stylingSlice";
 import { motion } from "framer-motion";
+import { setStyles } from "../utils/HelperFunctions";
 
 const Styling = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,10 @@ const Styling = () => {
   const [selectedColumn, setSelectedColumn] = useState(columns);
 
   useEffect(() => {
-    updateDbWithStyles();
     if (styleMode === null) {
       setStyleMode(1);
     }
+    updateDbWithStyles();
   }, [selectedColumn]);
 
   const handleColorChange = (num, colorToSet) => {
@@ -45,7 +46,9 @@ const Styling = () => {
     };
 
     dispatch(editStyles(styleUpdate)).then(() => {
-      dispatch(fetchStyles({ userId }));
+      dispatch(fetchStyles({ userId })).then(() => {
+        setStyles(primaryColor, secondaryColor, tertiaryColor, selectedColumn);
+      });
     });
   };
 
