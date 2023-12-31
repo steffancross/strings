@@ -40,23 +40,28 @@ const Styling = () => {
           >
             Tertiary Color
           </button>
+          <button
+            onClick={() => setNum(4)}
+            className={num === 4 ? "selected" : "unselected"}
+          >
+            Columns
+          </button>
         </div>
-        <ChromePicker
-          disableAlpha={true}
-          color={color}
-          onChange={(color) => handleColorChange(num, color)}
-        />
-      </div>
-      <div>
-        <button
-          onClick={() => setNum(4)}
-          className={num === 4 ? "selected" : "unselected"}
-        >
-          Columns
-        </button>
-        {columnList.map((item, index) => (
-          <p key={index}>{item}</p>
-        ))}
+        <div>
+          {num === 4 ? (
+            <div id="columns">
+              {columnList.map((item, index) => (
+                <p key={index}>{item}</p>
+              ))}
+            </div>
+          ) : (
+            <ChromePicker
+              disableAlpha={true}
+              color={color}
+              onChange={(color) => handleColorChange(num, color)}
+            />
+          )}
+        </div>
       </div>
     </>
   );

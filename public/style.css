@@ -440,3 +440,8 @@ em {
 .unselected {
   color: var(--tertiary-color);
 }
+
+#columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
