@@ -433,6 +433,10 @@ em {
   display: none !important;
 }
 
+.chrome-picker {
+  box-shadow: none !important;
+}
+
 .selected-color {
   color: var(--primary-color);
 }
@@ -448,4 +452,26 @@ em {
 #columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+}
+
+.style-mode {
+  display: grid;
+  place-items: center;
+}
+
+.style-mode p {
+  margin: 10px;
+  padding: 0 5px 0 5px;
+}
+
+.style-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px 0px 50px 0px;
+}
+
+.style-selector button {
+  border: none;
 }
