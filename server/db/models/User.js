@@ -28,15 +28,15 @@ const User = db.define("user", {
   },
   primaryColor: {
     type: Sequelize.STRING,
-    defaultValue: "000000",
+    defaultValue: "#000000",
   },
   secondaryColor: {
     type: Sequelize.STRING,
-    defaultValue: "ffffff",
+    defaultValue: "#ffffff",
   },
   tertiaryColor: {
     type: Sequelize.STRING,
-    defaultValue: "b8b8b8",
+    defaultValue: "#b8b8b8",
   },
   columns: {
     type: Sequelize.INTEGER,

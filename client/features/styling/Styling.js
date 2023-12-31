@@ -8,7 +8,7 @@ const Styling = () => {
   const dispatch = useDispatch();
   const columnList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [color, setColor] = useState("#000");
-  const [styleMode, setStyleMode] = useState(1);
+  const [styleMode, setStyleMode] = useState(null);
   const userId = useSelector((state) => state.auth.me.id);
   const primaryColor = useSelector((state) => state.styles.primaryColor);
   const secondaryColor = useSelector((state) => state.styles.secondaryColor);
@@ -18,6 +18,9 @@ const Styling = () => {
 
   useEffect(() => {
     updateDbWithStyles();
+    if (styleMode === null) {
+      setStyleMode(1);
+    }
   }, [selectedColumn]);
 
   const handleColorChange = (num, colorToSet) => {
