@@ -8,7 +8,6 @@ import Guide from "../features/guide/Guide";
 import Tags from "../features/tags/Tags";
 import About from "../features/about/About";
 import Graph from "../features/graph/Graph";
-import Styling from "../features/styling/Styling";
 import { setFalseFirstVisit } from "../features/utils/userSlice";
 import { me } from "./store";
 import { fetchStyles } from "../features/styling/stylingSlice";
@@ -48,7 +47,6 @@ const AppRoutes = () => {
             <Route path="/graph" element={<Graph />} />
             <Route path="/guide" element={<Guide />} />
             <Route path="/about" element={<About />} />
-            <Route path="/styling" element={<Styling />} />
             <Route path="/*" element={<Main />} />
           </Routes>
         </div>

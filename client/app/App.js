@@ -7,6 +7,7 @@ import NewMat from "../features/newmat/NewMat";
 import Overlay from "../features/overlay/Overlay";
 import SingleMat from "../features/singlemat/Singlemat";
 import SingleTag from "../features/singletag/Singletag";
+import Styling from "../features/styling/Styling";
 import { AnimatePresence } from "framer-motion";
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
   const showSingleMat = useSelector((state) => state.flags.showSingleMat);
   const showSingleTag = useSelector((state) => state.flags.showSingleTag);
   const showNewMat = useSelector((state) => state.flags.showNewMat);
+  const showStyling = useSelector((state) => state.flags.showStyling);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,6 +31,7 @@ const App = () => {
         {isLoggedIn && showSingleTag && <SingleTag key={2} />}
         {isLoggedIn && showNewMat && <NewMat key={3} />}
         {isLoggedIn && showOverlay && <Overlay key={4} />}
+        {isLoggedIn && showStyling && <Styling key={5} />}
       </AnimatePresence>
       <AppRoutes />
     </>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ChromePicker } from "react-color";
 import { useSelector, useDispatch } from "react-redux";
 import { editStyles } from "./stylingSlice";
+import { motion } from "framer-motion";
 
 const Styling = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,13 @@ const Styling = () => {
 
   return (
     <>
-      <div>
+      <motion.div
+        className="popup"
+        initial={{ opacity: 0, y: "-40%", x: "-50%" }}
+        animate={{ opacity: 1, y: "-50%", x: "-50%" }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
         <div>
           <button
             onClick={() => setStyleMode(1)}
@@ -94,7 +101,7 @@ const Styling = () => {
             />
           )}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
