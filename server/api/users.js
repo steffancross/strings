@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { col } = require("sequelize");
 const {
   models: { User },
 } = require("../db");
@@ -35,6 +36,26 @@ router.get("/styles", async (req, res, next) => {
     });
 
     res.send(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// set user styling
+router.put("/styles", async (req, res, next) => {
+  try {
+    const { primaryColor, secondaryColor, tertiaryColor, columns, userId } =
+      req.body;
+
+    const userToEdit = await User.findByPk(userId);
+
+    userToEdit.primaryColor = primaryColor;
+    userToEdit.secondaryColor = secondaryColor;
+    userToEdit.tertiaryColor = tertiaryColor;
+    userToEdit.columns = columns;
+
+    await userToEdit.save();
+    res.send(userToEdit);
   } catch (err) {
     next(err);
   }
