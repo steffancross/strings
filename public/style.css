@@ -433,12 +433,16 @@ em {
   display: none;
 }
 
-.selected {
+.selected-color {
   color: var(--primary-color);
 }
 
-.unselected {
+.unselected-color {
   color: var(--tertiary-color);
+}
+
+.selected-column {
+  border: 1px solid var(--primary-color);
 }
 
 #columns {
