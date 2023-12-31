@@ -11,6 +11,7 @@ import Graph from "../features/graph/Graph";
 import Styling from "../features/styling/Styling";
 import { setFalseFirstVisit } from "../features/utils/userSlice";
 import { me } from "./store";
+import { fetchStyles } from "../features/styling/stylingSlice";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ const AppRoutes = () => {
     dispatch(me()).then(() => {
       setIsLoading(false);
     });
+
+    dispatch(fetchStyles({ userId }));
 
     if (firstVisit && userId) {
       navigate("/about");

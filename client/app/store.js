@@ -6,6 +6,7 @@ import singlematSlice from "../features/singlemat/singlematSlice";
 import tagSlice from "../features/tags/tagSlice";
 import singletagSlice from "../features/singletag/singletagSlice";
 import flagSlice from "../features/utils/flagSlice";
+import stylingSlice from "../features/styling/stylingSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     tags: tagSlice,
     tag: singletagSlice,
     flags: flagSlice,
+    styles: stylingSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
