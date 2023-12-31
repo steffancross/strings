@@ -28,19 +28,19 @@ const User = db.define("user", {
   },
   primaryColor: {
     type: Sequelize.STRING,
-    defaultValue: null,
+    defaultValue: "000000",
   },
   secondaryColor: {
     type: Sequelize.STRING,
-    defaultValue: null,
+    defaultValue: "ffffff",
   },
   tertiaryColor: {
     type: Sequelize.STRING,
-    defaultValue: null,
+    defaultValue: "b8b8b8",
   },
   columns: {
     type: Sequelize.INTEGER,
-    defaultValue: null,
+    defaultValue: 5,
   },
 });
 

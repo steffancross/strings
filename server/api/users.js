@@ -18,6 +18,28 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// get user styling
+router.get("/styles", async (req, res, next) => {
+  try {
+    const { userId } = req.query;
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+      attributes: [
+        "primaryColor",
+        "secondaryColor",
+        "tertiaryColor",
+        "columns",
+      ],
+    });
+
+    res.send(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // set first visit to false
 router.put("/:id", async (req, res, next) => {
   try {
