@@ -428,9 +428,9 @@ em {
 }
 
 /* STYLING */
-/* to get rid of hsb and hsl. will only show hex now. */
-.chrome-picker > div:last-child > div:last-child > div:last-child {
-  display: none;
+/* to get rid of the hex area */
+.chrome-picker > div:last-child > div:last-child {
+  display: none !important;
 }
 
 .selected-color {
