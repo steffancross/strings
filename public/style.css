@@ -107,6 +107,11 @@ form div {
   cursor: pointer;
 }
 
+.error-popup {
+  position: absolute;
+  margin: 0;
+}
+
 /* SEARCHBAR */
 .top-bar {
   position: fixed;
