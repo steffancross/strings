@@ -14,7 +14,6 @@ const AuthForm = ({ name, displayName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { error, result } = useSelector((state) => state.auth);
-  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -24,9 +23,6 @@ const AuthForm = ({ name, displayName }) => {
     dispatch(authenticate({ email, password, method: formName }));
   };
 
-  // form submitted errors
-  // current topic
-  // navigates away on first error even though should be false
   useEffect(() => {
     if (result) {
       navigate("/");
