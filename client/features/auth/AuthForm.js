@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticate } from "../../app/store";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,8 @@ import { motion } from "framer-motion";
 const AuthForm = ({ name, displayName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error } = useSelector((state) => state.auth);
+  const { error, result } = useSelector((state) => state.auth);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -21,9 +22,24 @@ const AuthForm = ({ name, displayName }) => {
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     dispatch(authenticate({ email, password, method: formName }));
+  };
 
-    if ((error = null)) {
+  // form submitted errors
+  // current topic
+  // navigates away on first error even though should be false
+  useEffect(() => {
+    if (result) {
       navigate("/");
+    } else {
+      parseErrorMessage(error);
+    }
+  }, [result]);
+
+  // error message handling
+  const parseErrorMessage = (str) => {
+    if (str) {
+      const errorsArr = str.split(", ");
+      console.log("++++", errorsArr);
     }
   };
 
