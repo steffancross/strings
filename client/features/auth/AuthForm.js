@@ -14,6 +14,7 @@ const AuthForm = ({ name, displayName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { error, result } = useSelector((state) => state.auth);
+  const [errorVisible, setErrorVisible] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -29,13 +30,19 @@ const AuthForm = ({ name, displayName }) => {
     } else {
       parseErrorMessage(error);
     }
-  }, [result]);
+  }, [result, error]);
 
   // error message handling
   const parseErrorMessage = (str) => {
     if (str) {
       const errorsArr = str.split(", ");
       console.log("++++", errorsArr);
+    }
+    if (error) {
+      setErrorVisible(true);
+      setTimeout(() => {
+        setErrorVisible(false);
+      }, 2000);
     }
   };
 
@@ -56,7 +63,7 @@ const AuthForm = ({ name, displayName }) => {
           <div className="auth-btn">
             <button type="submit">{displayName}</button>
           </div>
-          {error && <div className="error-popup"> {error} </div>}
+          {errorVisible && <div className="error-popup"> {error} </div>}
         </form>
       </motion.div>
     </div>
