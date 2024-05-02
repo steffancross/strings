@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticate, resetError } from "../../app/store";
+import { errorParser } from "./errorParser";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -15,6 +16,7 @@ const AuthForm = ({ name, displayName }) => {
   const navigate = useNavigate();
   const { error, result } = useSelector((state) => state.auth);
   const [errorVisible, setErrorVisible] = useState(false);
+  const [parsedErrorArray, setParsedErrorArray] = useState([]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -28,24 +30,16 @@ const AuthForm = ({ name, displayName }) => {
     if (result) {
       navigate("/");
     } else {
-      parseErrorMessage(error);
-    }
-  }, [result, error]);
-
-  // error message handling
-  const parseErrorMessage = (str) => {
-    if (str) {
-      const errorsArr = str.split(", ");
-      console.log("++++", errorsArr);
-    }
-    if (error) {
+      const parsedError = errorParser(error);
+      console.log("=====", parsedError);
+      setParsedErrorArray(parsedError);
       setErrorVisible(true);
       setTimeout(() => {
         setErrorVisible(false);
         dispatch(resetError());
-      }, 2000);
+      }, 6000);
     }
-  };
+  }, [result, error]);
 
   return (
     <div className="centering-div">
@@ -64,7 +58,13 @@ const AuthForm = ({ name, displayName }) => {
           <div className="auth-btn">
             <button type="submit">{displayName}</button>
           </div>
-          {errorVisible && <div className="error-popup"> {error} </div>}
+          {errorVisible && (
+            <div className="error-popup">
+              {parsedErrorArray.map((error, index) => (
+                <p key={index}>{error}</p>
+              ))}
+            </div>
+          )}
         </form>
       </motion.div>
     </div>
