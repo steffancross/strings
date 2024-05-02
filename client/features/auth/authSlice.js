@@ -65,6 +65,9 @@ export const authSlice = createSlice({
       state.error = null;
       state.result = false;
     },
+    resetError(state, action) {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(me.fulfilled, (state, action) => {
@@ -85,7 +88,7 @@ export const authSlice = createSlice({
 /*
   ACTIONS
 */
-export const { logout } = authSlice.actions;
+export const { logout, resetError } = authSlice.actions;
 
 /*
   REDUCER

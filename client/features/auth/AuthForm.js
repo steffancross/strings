@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authenticate } from "../../app/store";
+import { authenticate, resetError } from "../../app/store";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -42,6 +42,7 @@ const AuthForm = ({ name, displayName }) => {
       setErrorVisible(true);
       setTimeout(() => {
         setErrorVisible(false);
+        dispatch(resetError());
       }, 2000);
     }
   };
