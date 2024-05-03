@@ -2,26 +2,25 @@
 // NOT SPLITTING THE STRING
 
 export function errorParser(str) {
-  const errors = [];
+  const errorSet = new Set();
   if (str) {
-    const errorsArr = str.split(", ").map((error) => error.trim());
-    // console.log(str);
-    // console.log("===", errorsArr);
+    const errorsArr = str.split(",").map((error) => error.trim());
     errorsArr.forEach((error) => {
       switch (error) {
         case "Validation error: Validation notEmpty on password failed":
-          errors.push("Please enter a password.");
+          errorSet.add("Please enter a password.");
           break;
         case "Validation error: Validation isEmail on email failed":
-          errors.push("Please enter a valid email address.");
+          errorSet.add("Please enter a valid email address.");
           break;
         case "Validation error: Validation notEmpty on email failed":
-          errors.push("Please enter an email address.");
+          errorSet.add("Please enter a valid email address.");
           break;
         case "Incorrect email/password":
-          errors.push("Incorrect email or password");
+          errorSet.add("Incorrect email or password");
       }
     });
   }
+  const errors = Array.from(errorSet);
   return errors;
 }

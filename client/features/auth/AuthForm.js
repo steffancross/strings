@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticate, resetError } from "../../app/store";
 import { errorParser } from "./errorParser";
@@ -17,6 +17,7 @@ const AuthForm = ({ name, displayName }) => {
   const { error, result } = useSelector((state) => state.auth);
   const [errorVisible, setErrorVisible] = useState(false);
   const [parsedErrorArray, setParsedErrorArray] = useState([]);
+  const timerRef = useRef(null);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -31,13 +32,17 @@ const AuthForm = ({ name, displayName }) => {
       navigate("/");
     } else {
       const parsedError = errorParser(error);
-      console.log("=====", parsedError);
       setParsedErrorArray(parsedError);
       setErrorVisible(true);
-      setTimeout(() => {
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(() => {
         setErrorVisible(false);
         dispatch(resetError());
-      }, 6000);
+      }, 2000);
     }
   }, [result, error]);
 
