@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authenticate } from "../../app/store";
+import { authenticate, resetError } from "../../app/store";
+import { errorParser } from "./errorParser";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -13,7 +14,10 @@ import { motion } from "framer-motion";
 const AuthForm = ({ name, displayName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error } = useSelector((state) => state.auth);
+  const { error, result } = useSelector((state) => state.auth);
+  const [errorVisible, setErrorVisible] = useState(false);
+  const [parsedErrorArray, setParsedErrorArray] = useState([]);
+  const timerRef = useRef(null);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -21,8 +25,26 @@ const AuthForm = ({ name, displayName }) => {
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     dispatch(authenticate({ email, password, method: formName }));
-    navigate("/");
   };
+
+  useEffect(() => {
+    if (result) {
+      navigate("/");
+    } else {
+      const parsedError = errorParser(error);
+      setParsedErrorArray(parsedError);
+      setErrorVisible(true);
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(() => {
+        setErrorVisible(false);
+        dispatch(resetError());
+      }, 2000);
+    }
+  }, [result, error]);
 
   return (
     <div className="centering-div">
@@ -41,7 +63,13 @@ const AuthForm = ({ name, displayName }) => {
           <div className="auth-btn">
             <button type="submit">{displayName}</button>
           </div>
-          {error && <div> {error} </div>}
+          {errorVisible && (
+            <div className="error-popup">
+              {parsedErrorArray.map((error, index) => (
+                <p key={index}>{error}</p>
+              ))}
+            </div>
+          )}
         </form>
       </motion.div>
     </div>
