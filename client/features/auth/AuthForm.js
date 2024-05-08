@@ -4,6 +4,7 @@ import { authenticate, resetError } from "../../app/store";
 import { errorParser } from "./errorParser";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import "../../styles/auth.scss";
 
 /**
   The AuthForm component can be used for Login or Sign Up.

@@ -1,0 +1,44 @@
+label {
+  display: block;
+}
+
+form {
+  div {
+    margin: 1em;
+    display: inline-block;
+  }
+}
+
+.auth-inputs {
+  display: flex;
+
+  input {
+    margin-right: 5px;
+  }
+}
+
+.auth-btn {
+  margin-top: 0px;
+
+  button {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    font-size: 1.1rem;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.error-popup {
+  position: absolute;
+  margin: 0;
+
+  p {
+    margin-top: 2px;
+    margin-bottom: 0;
+  }
+}

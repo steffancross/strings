@@ -74,7 +74,7 @@ a {
 }
 
 /* AUTH */
-label {
+/* label {
   display: block;
 }
 
@@ -115,7 +115,7 @@ form div {
 .error-popup p {
   margin-top: 2px;
   margin-bottom: 0;
-}
+} */
 
 /* SEARCHBAR */
 .top-bar {
