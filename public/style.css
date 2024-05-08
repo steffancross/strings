@@ -151,7 +151,7 @@ form div {
 }
 
 /* NOT LOGGED IN */
-.notloggedin {
+/* .notloggedin {
   display: flex;
   align-items: center;
   margin-top: 16px;
@@ -168,7 +168,7 @@ form div {
   font-size: 4rem;
   margin-top: 16px;
   margin-bottom: 16px;
-}
+} */
 
 /* NAVBAR */
 .menu-item {

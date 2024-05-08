@@ -1,3 +1,24 @@
+.notloggedin {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+
+  p {
+    margin: 0px;
+  }
+}
+
 #title {
-  color: red;
+  position: fixed;
+  left: 0;
+  top: 10%;
+  font-size: 4rem;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.vert-align {
+  margin: 0;
+  position: absolute;
+  top: 35%;
 }
