@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setAllFalse } from "../utils/flagSlice";
 import { motion } from "framer-motion";
+import "../../styles/overlay.scss";
 
 const Overlay = () => {
   const dispatch = useDispatch();

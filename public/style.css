@@ -200,7 +200,7 @@ form div {
 } */
 
 /* OVERLAY */
-.overlay {
+/* .overlay {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -212,7 +212,7 @@ form div {
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2px);
   z-index: 998;
-}
+} */
 
 /* POPUPS */
 .popup {
