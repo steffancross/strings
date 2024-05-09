@@ -118,7 +118,7 @@ form div {
 } */
 
 /* SEARCHBAR */
-.top-bar {
+/* .top-bar {
   position: fixed;
   top: 0;
   width: 100%;
@@ -134,7 +134,7 @@ form div {
 .search-bar input {
   width: 300px;
   height: 40px;
-  /* background: var(--tertiary-color); */
+  background: var(--tertiary-color);
   border: none;
 }
 
@@ -148,7 +148,7 @@ form div {
   left: 20px;
   background-color: #d8402a;
   padding: 20px 50px 20px 20px;
-}
+} */
 
 /* NOT LOGGED IN */
 /* .notloggedin {
