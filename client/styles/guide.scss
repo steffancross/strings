@@ -1,0 +1,42 @@
+.guide {
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  p {
+    margin-top: 0;
+  }
+}
+
+.guide-title {
+  font-size: 1.5rem;
+}
+
+.indent-title {
+  font-size: 1.2rem;
+  margin-left: 20px;
+}
+
+.guide-command {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 40px;
+}
+
+em {
+  font-weight: bold;
+}
+
+.guide-example {
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+  font-size: 0.9rem;
+
+  small {
+    color: var(--tertiary-color);
+  }
+}
