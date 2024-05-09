@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
 import Popup from "reactjs-popup";
+import "../../styles/navbar.scss";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
