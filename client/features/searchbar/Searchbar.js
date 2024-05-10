@@ -13,6 +13,7 @@ import {
   setShowOverlay,
   setShowStyling,
 } from "../utils/flagSlice";
+import "../../styles/searchbar.scss";
 
 const SearchBar = () => {
   const dispatch = useDispatch();

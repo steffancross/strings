@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import "../../styles/notloggedin.scss";
 
 const NotLoggedIn = () => {
   return (
     <>
-      <div className="centering-div">
+      <div className="vert-align">
         <p id="title">AD.HOC</p>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.0, delay: 0.5 }}
+          className="left-side"
         >
           <p>Welcome to Ad.hoc</p>
           <p>This is a place to archive and catalogue words and phrases.</p>
@@ -30,7 +32,7 @@ const NotLoggedIn = () => {
             <Link to="/login">here</Link>
           </div>
           <div className="notloggedin">
-            <p>Or if you are new, you can make a free account&nbsp;</p>
+            <p>Or if you are new, you can make an account&nbsp;</p>
             <Link to="/signup">here</Link>
           </div>
         </motion.div>

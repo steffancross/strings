@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as d3 from "d3";
 import { fetchTexts } from "../main/mainSlice";
 import { graphParser } from "../utils/HelperFunctions";
+import "../../styles/graph.scss";
 
 const Graph = () => {
   const svgRef = useRef(null);
