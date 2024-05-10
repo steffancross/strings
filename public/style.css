@@ -225,6 +225,21 @@ a {
   margin-top: 5px;
 }
 
+@media (max-width: 768px) {
+  .single-edit {
+    width: 130px;
+    font-size: 1.3rem;
+  }
+
+  .single-delete {
+    width: 130px;
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-top: 5px;
+  }
+}
+
 /* NEWMAT */
 .new-buttons {
   display: flex;
