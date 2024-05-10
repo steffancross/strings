@@ -15,7 +15,6 @@
   input {
     width: 300px;
     height: 40px;
-    /* background: var(--tertiary-color); */
     border: none;
 
     &:focus {
@@ -30,6 +29,7 @@
   left: 20px;
   background-color: #d8402a;
   padding: 20px 50px 20px 20px;
+  z-index: 999;
 }
 
 @media (max-width: 768px) {

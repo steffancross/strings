@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { editStyles, fetchStyles } from "./stylingSlice";
 import { motion } from "framer-motion";
 import { setStyles } from "../utils/HelperFunctions";
+import "../../styles/styling.scss";
 
 const Styling = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ const Styling = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="single-mattag">
+        <div className="bounding-div">
           <div className="style-selector">
             <button
               onClick={() => setStyleMode(1)}

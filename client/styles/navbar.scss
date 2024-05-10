@@ -24,4 +24,8 @@
   div:hover {
     text-decoration: underline;
   }
+
+  div:nth-child(5) {
+    padding-bottom: 10px;
+  }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
+import { setShowOverlay, setShowStyling } from "../utils/flagSlice";
 import Popup from "reactjs-popup";
 import "../../styles/navbar.scss";
 
@@ -12,6 +13,11 @@ const Navbar = () => {
   const logoutAndRedirectHome = () => {
     dispatch(logout());
     navigate("/");
+  };
+
+  const showStyle = () => {
+    dispatch(setShowOverlay(true));
+    dispatch(setShowStyling(true));
   };
 
   return (
@@ -33,6 +39,7 @@ const Navbar = () => {
               <Link to="/guide">Guide</Link>
               <Link to="/about">About</Link>
               <Link to="/graph">Graph</Link>
+              <div onClick={showStyle}>Style</div>
               <div onClick={logoutAndRedirectHome}>Logout</div>
             </div>
           ) : (
