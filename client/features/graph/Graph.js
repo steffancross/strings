@@ -74,13 +74,14 @@ const Graph = () => {
           .on("end", dragended)
       );
 
-    node.append("circle").attr("r", (d) => 25 + 2 * d.count);
+    node
+      .append("circle")
+      .attr("r", (d) => (d.type === "tag" ? 20 : 10)) // Different sizes for tags and content nodes
+      .attr("class", (d) => (d.type === "tag" ? "tag-node" : "content-node"));
 
     node
       .append("text")
-      .text(function (d) {
-        return d.id;
-      })
+      .text((d) => d.id)
       .style("font-size", "14px")
       .attr("text-anchor", "middle")
       .attr("y", 2)
