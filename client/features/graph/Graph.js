@@ -45,7 +45,7 @@ const Graph = () => {
           .id((d) => d.id)
           .distance(110)
       )
-      .force("charge", d3.forceManyBody().strength(-70))
+      .force("charge", d3.forceManyBody().strength(-50))
       .force(
         "center",
         d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)
@@ -81,7 +81,7 @@ const Graph = () => {
 
     node
       .append("text")
-      .text((d) => d.id)
+      .text((d) => (d.type === "tag" ? d.id : d.content))
       .style("font-size", "14px")
       .attr("text-anchor", "middle")
       .attr("y", 2)
