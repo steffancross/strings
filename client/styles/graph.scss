@@ -1,6 +1,6 @@
 .node circle {
   stroke: var(--primary-color);
-  fill: var(--secondary-color);
+  fill: var(--primary-color);
 }
 
 .text {
@@ -9,4 +9,12 @@
 
 .link {
   stroke: var(--primary-color);
+}
+
+.content-text {
+  display: none;
+}
+
+.content-node:hover + .content-text {
+  display: block;
 }

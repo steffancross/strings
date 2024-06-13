@@ -76,7 +76,7 @@ const Graph = () => {
 
     node
       .append("circle")
-      .attr("r", (d) => (d.type === "tag" ? 20 : 10)) // Different sizes for tags and content nodes
+      .attr("r", (d) => (d.type === "tag" ? 15 : 7)) // Different sizes for tags and content nodes
       .attr("class", (d) => (d.type === "tag" ? "tag-node" : "content-node"));
 
     node
@@ -84,8 +84,8 @@ const Graph = () => {
       .text((d) => (d.type === "tag" ? d.id : d.content))
       .style("font-size", "14px")
       .attr("text-anchor", "middle")
-      .attr("y", 2)
-      .attr("class", "text");
+      .attr("y", -17)
+      .attr("class", (d) => (d.type === "tag" ? "tag-text" : "content-text"));
 
     // Update node and link positions on each tick of the simulation
     simulation.on("tick", () => {
