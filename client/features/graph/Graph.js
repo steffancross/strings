@@ -13,8 +13,12 @@ const Graph = () => {
   const dataToParse = useSelector((state) => state.mats);
   const [nodes, setNodes] = useState([]);
   const [links, setLinks] = useState([]);
-  const width = window.innerWidth;
-  const height = window.innerHeight - 80;
+  // const width = window.innerWidth;
+  // const height = window.innerHeight - 80;
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight - 80,
+  });
 
   useEffect(() => {
     if (dataToParse.length === 0) {
@@ -60,7 +64,7 @@ const Graph = () => {
       .force("charge", d3.forceManyBody().strength(-80))
       .force(
         "center",
-        d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)
+        d3.forceCenter(dimensions.width / 2, dimensions.height / 2)
       );
 
     // Draw links
@@ -131,11 +135,31 @@ const Graph = () => {
       // Clean up simulation on component unmount
       simulation.stop();
     };
-  }, [nodes, links, width, height]);
+  }, [nodes, links, dimensions.width, dimensions.height]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight - 80,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
-      <svg ref={svgRef} width={width} height={height}></svg>
+      <svg
+        ref={svgRef}
+        width={dimensions.width}
+        height={dimensions.height}
+      ></svg>
     </>
   );
 };
