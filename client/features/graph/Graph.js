@@ -34,6 +34,18 @@ const Graph = () => {
 
     // Create the SVG container
     const svg = d3.select(svgRef.current);
+    svg.selectAll("*").remove(); // Clear previous contents, if any
+
+    // Zoom behavior
+    const zoom = d3
+      .zoom()
+      .scaleExtent([0.1, 4]) // Set scale extent
+      .on("zoom", (event) => {
+        g.attr("transform", event.transform);
+      });
+
+    svg.call(zoom);
+    const g = svg.append("g");
 
     // Create a D3 force simulation
     const simulation = d3
@@ -45,14 +57,14 @@ const Graph = () => {
           .id((d) => d.id)
           .distance(110)
       )
-      .force("charge", d3.forceManyBody().strength(-50))
+      .force("charge", d3.forceManyBody().strength(-80))
       .force(
         "center",
         d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)
       );
 
     // Draw links
-    const link = svg
+    const link = g
       .selectAll(".link")
       .data(links)
       .enter()
@@ -60,7 +72,7 @@ const Graph = () => {
       .attr("class", "link");
 
     // Draw nodes
-    const node = svg
+    const node = g
       .selectAll(".node")
       .data(nodes)
       .enter()
@@ -119,7 +131,7 @@ const Graph = () => {
       // Clean up simulation on component unmount
       simulation.stop();
     };
-  }, [nodes, links]);
+  }, [nodes, links, width, height]);
 
   return (
     <>
