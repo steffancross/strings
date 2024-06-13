@@ -13,8 +13,12 @@ const Graph = () => {
   const dataToParse = useSelector((state) => state.mats);
   const [nodes, setNodes] = useState([]);
   const [links, setLinks] = useState([]);
-  const width = window.innerWidth;
-  const height = window.innerHeight - 80;
+  // const width = window.innerWidth;
+  // const height = window.innerHeight - 80;
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight - 80,
+  });
 
   useEffect(() => {
     if (dataToParse.length === 0) {
@@ -34,6 +38,18 @@ const Graph = () => {
 
     // Create the SVG container
     const svg = d3.select(svgRef.current);
+    svg.selectAll("*").remove(); // Clear previous contents, if any
+
+    // Zoom behavior
+    const zoom = d3
+      .zoom()
+      .scaleExtent([0.1, 4]) // Set scale extent
+      .on("zoom", (event) => {
+        g.attr("transform", event.transform);
+      });
+
+    svg.call(zoom);
+    const g = svg.append("g");
 
     // Create a D3 force simulation
     const simulation = d3
@@ -45,14 +61,14 @@ const Graph = () => {
           .id((d) => d.id)
           .distance(110)
       )
-      .force("charge", d3.forceManyBody().strength(-70))
+      .force("charge", d3.forceManyBody().strength(-80))
       .force(
         "center",
-        d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2)
+        d3.forceCenter(dimensions.width / 2, dimensions.height / 2)
       );
 
     // Draw links
-    const link = svg
+    const link = g
       .selectAll(".link")
       .data(links)
       .enter()
@@ -60,7 +76,7 @@ const Graph = () => {
       .attr("class", "link");
 
     // Draw nodes
-    const node = svg
+    const node = g
       .selectAll(".node")
       .data(nodes)
       .enter()
@@ -74,17 +90,18 @@ const Graph = () => {
           .on("end", dragended)
       );
 
-    node.append("circle").attr("r", (d) => 25 + 2 * d.count);
+    node
+      .append("circle")
+      .attr("r", (d) => (d.type === "tag" ? 15 : 7)) // Different sizes for tags and content nodes
+      .attr("class", (d) => (d.type === "tag" ? "tag-node" : "content-node"));
 
     node
       .append("text")
-      .text(function (d) {
-        return d.id;
-      })
+      .text((d) => (d.type === "tag" ? d.id : d.content))
       .style("font-size", "14px")
       .attr("text-anchor", "middle")
-      .attr("y", 2)
-      .attr("class", "text");
+      .attr("y", -17)
+      .attr("class", (d) => (d.type === "tag" ? "tag-text" : "content-text"));
 
     // Update node and link positions on each tick of the simulation
     simulation.on("tick", () => {
@@ -118,11 +135,31 @@ const Graph = () => {
       // Clean up simulation on component unmount
       simulation.stop();
     };
-  }, [nodes, links]);
+  }, [nodes, links, dimensions.width, dimensions.height]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight - 80,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
-      <svg ref={svgRef} width={width} height={height}></svg>
+      <svg
+        ref={svgRef}
+        width={dimensions.width}
+        height={dimensions.height}
+      ></svg>
     </>
   );
 };
