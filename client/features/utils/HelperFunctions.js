@@ -8,7 +8,7 @@ export function graphParser(data) {
   data.forEach((dat) => {
     dat.tags.forEach((tag) => {
       if (!tagNodes[tag.name]) {
-        tagNodes[tag.name] = { id: tag.name, type: "tag" };
+        tagNodes[tag.name] = { id: tag.name, type: "tag", nameId: tag.id };
       }
     });
   });

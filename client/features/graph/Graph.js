@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import * as d3 from "d3";
 import { fetchTexts } from "../main/mainSlice";
 import { graphParser } from "../utils/HelperFunctions";
+import {
+  setShowOverlay,
+  setShowSingleMat,
+  setShowSingleTag,
+  setCurrentId,
+} from "../utils/flagSlice";
 import "../../styles/graph.scss";
 
 const Graph = () => {
@@ -13,12 +19,22 @@ const Graph = () => {
   const dataToParse = useSelector((state) => state.mats);
   const [nodes, setNodes] = useState([]);
   const [links, setLinks] = useState([]);
-  // const width = window.innerWidth;
-  // const height = window.innerHeight - 80;
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight - 80,
   });
+
+  const singleMatPopup = (id) => {
+    dispatch(setCurrentId(id));
+    dispatch(setShowOverlay(true));
+    dispatch(setShowSingleMat(true));
+  };
+
+  const singleTagPopup = (id) => {
+    dispatch(setCurrentId(id));
+    dispatch(setShowOverlay(true));
+    dispatch(setShowSingleTag(true));
+  };
 
   useEffect(() => {
     if (dataToParse.length === 0) {
@@ -32,11 +48,10 @@ const Graph = () => {
     setLinks(links);
   }, [dataToParse]);
 
+  // Draw graph
   useEffect(() => {
-    // only simulate when that data is here
     if (nodes.length === 0 || links.length === 0) return;
 
-    // Create the SVG container
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove(); // Clear previous contents, if any
 
@@ -88,7 +103,14 @@ const Graph = () => {
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended)
-      );
+      )
+      .on("click", (event, d) => {
+        if (d.type === "tag") {
+          singleTagPopup(d.nameId);
+        } else {
+          singleMatPopup(d.id);
+        }
+      });
 
     node
       .append("circle")
@@ -103,7 +125,7 @@ const Graph = () => {
       .attr("y", -17)
       .attr("class", (d) => (d.type === "tag" ? "tag-text" : "content-text"));
 
-    // Update node and link positions on each tick of the simulation
+    // Update node and link positions
     simulation.on("tick", () => {
       link
         .attr("x1", (d) => d.source.x)
