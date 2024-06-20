@@ -73,7 +73,7 @@ const Graph = () => {
         "link",
         d3
           .forceLink(links)
-          .id((d) => d.id)
+          .id((d) => d.linkId)
           .distance(110)
       )
       .force("charge", d3.forceManyBody().strength(-80))
@@ -106,7 +106,7 @@ const Graph = () => {
       )
       .on("click", (event, d) => {
         if (d.type === "tag") {
-          singleTagPopup(d.nameId);
+          singleTagPopup(d.id);
         } else {
           singleMatPopup(d.id);
         }
@@ -119,7 +119,7 @@ const Graph = () => {
 
     node
       .append("text")
-      .text((d) => (d.type === "tag" ? d.id : d.content))
+      .text((d) => (d.type === "tag" ? d.name : d.content))
       .style("font-size", "14px")
       .attr("text-anchor", "middle")
       .attr("y", -17)

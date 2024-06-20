@@ -7,19 +7,29 @@ export function graphParser(data) {
   // Collect tag nodes
   data.forEach((dat) => {
     dat.tags.forEach((tag) => {
-      if (!tagNodes[tag.name]) {
-        tagNodes[tag.name] = { id: tag.name, type: "tag", nameId: tag.id };
+      if (!tagNodes[tag.id]) {
+        tagNodes[tag.id] = {
+          linkId: `tag-${tag.id}`,
+          type: "tag",
+          name: tag.name,
+          id: tag.id,
+        };
       }
     });
   });
 
   // Collect content nodes and links
   data.forEach((dat) => {
-    const contentNode = { id: dat.id, type: "content", content: dat.content };
+    const contentNode = {
+      linkId: `content-${dat.id}`,
+      type: "content",
+      content: dat.content,
+      id: dat.id,
+    };
     contentNodes[dat.id] = contentNode;
 
     dat.tags.forEach((tag) => {
-      links.push({ source: dat.id, target: tag.name });
+      links.push({ source: `content-${dat.id}`, target: `tag-${tag.id}` });
     });
   });
 
