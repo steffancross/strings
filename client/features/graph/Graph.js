@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as d3 from "d3";
 import { fetchTexts } from "../main/mainSlice";
-import { graphParser } from "../utils/HelperFunctions";
+import { graphParser } from "../utils/graphParser";
 import {
   setShowOverlay,
   setShowSingleMat,
