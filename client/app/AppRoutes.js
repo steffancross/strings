@@ -11,7 +11,7 @@ import Graph from "../features/graph/Graph";
 import { setFalseFirstVisit } from "../features/utils/userSlice";
 import { me } from "./store";
 import { fetchStyles } from "../features/styling/stylingSlice";
-import { setStyles } from "../features/utils/HelperFunctions";
+import { setStyles } from "../features/utils/setStyles";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();

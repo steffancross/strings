@@ -3,7 +3,7 @@ import { ChromePicker } from "react-color";
 import { useSelector, useDispatch } from "react-redux";
 import { editStyles, fetchStyles } from "./stylingSlice";
 import { motion } from "framer-motion";
-import { setStyles } from "../utils/HelperFunctions";
+import { setStyles } from "../utils/setStyles";
 import "../../styles/styling.scss";
 
 const Styling = () => {
