@@ -76,7 +76,7 @@ const Graph = () => {
           .id((d) => d.linkId)
           .distance(110)
       )
-      .force("charge", d3.forceManyBody().strength(-70))
+      .force("charge", d3.forceManyBody().strength(-60))
       .force(
         "center",
         d3.forceCenter(dimensions.width / 2, dimensions.height / 2)
@@ -137,7 +137,7 @@ const Graph = () => {
     });
 
     function dragstarted(event) {
-      if (!event.active) simulation.alphaTarget(0.1).restart();
+      if (!event.active) simulation.alphaTarget(0.05).restart();
       event.subject.fx = event.subject.x;
       event.subject.fy = event.subject.y;
     }
