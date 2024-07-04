@@ -7,7 +7,7 @@ const {
 
 const userData = require("./userData");
 const textData = require("./textData");
-const tagData = require("./tagData");
+
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
