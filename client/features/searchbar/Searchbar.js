@@ -121,7 +121,7 @@ const SearchBar = () => {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Enter search command..."
+            placeholder="Enter command..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={handleKeyDown}

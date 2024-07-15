@@ -35,6 +35,8 @@ const Main = () => {
       dispatch(fetchTexts({ userId })).then(() => {
         setIsLoading(false);
       });
+    } else {
+      setIsLoading(false);
     }
   }, [dispatch, user]);
 
