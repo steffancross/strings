@@ -1,6 +1,7 @@
 # Ad.hoc
 
 Ad.hoc is a storage and categorization site similar to Are.na and Pinterest. It diverges from them in that only text can be stored.
+A live version of this site can be found [here.](https://adhoc-production.up.railway.app/)
 
 ## Installation
 
